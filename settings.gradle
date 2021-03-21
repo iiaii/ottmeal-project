@@ -1,0 +1,6 @@
+rootProject.name = 'ottmeal-project'
+
+include 'ottmeal-api'
+include 'ottmeal-common'
+include 'ottmeal-batch'
+
