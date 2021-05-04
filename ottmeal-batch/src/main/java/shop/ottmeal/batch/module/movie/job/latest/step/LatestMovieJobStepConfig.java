@@ -11,6 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.reader.RestItemReader;
 import shop.ottmeal.batch.module.movie.job.latest.dto.LatestMovieResponse;
+import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,6 +29,18 @@ public class LatestMovieJobStepConfig {
                 "https://api.themoviedb.org/3/discover/movie?api_key=0b1fe3786795a257dd0648d67445af97",
                 LatestMovieResponse[].class,
                 HttpMethod.GET);
+    }
+
+    @Bean
+    @StepScope
+    public LatestMovieItemProcessor latestMovieItemProcessor() {
+        return new LatestMovieItemProcessor();
+    }
+
+    @Bean
+    @StepScope
+    public LatestMovieItemWriter latestMovieItemWriter() {
+        return new LatestMovieItemWriter();
     }
 
     @Bean(name = STEP_NAME)
