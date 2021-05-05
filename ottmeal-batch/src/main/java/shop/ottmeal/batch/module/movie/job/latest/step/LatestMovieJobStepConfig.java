@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.reader.RestItemReader;
 import shop.ottmeal.batch.module.movie.job.latest.dto.LatestMovieResponse;
 import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
+import shop.ottmeal.batch.module.movie.job.latest.step.writer.LatestMovieItemWriter;
 
 @Configuration
 @RequiredArgsConstructor
