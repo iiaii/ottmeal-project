@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -16,29 +18,26 @@ public class LatestMovieResponse {
 
 //    {
 //        "adult": false,
-//            "backdrop_path": "/rspbS1E9wJtslrb8amfJgtMBUVh.jpg",
-//            "genre_ids": [
-//        28,
-//                27
-//            ],
+//        "backdrop_path": "/rspbS1E9wJtslrb8amfJgtMBUVh.jpg",
+//        "genre_ids": [ 28, 27 ],
 //        "id": 924,
-//            "original_language": "en",
-//            "original_title": "Dawn of the Dead",
-//            "overview": "A group of survivors take refuge in a shopping mall after the world is taken over by aggressive, flesh-eating zombies.",
-//            "popularity": 34.369,
-//            "poster_path": "/iBLQATsIkv005fvIhhbM4MvqhYp.jpg",
-//            "release_date": "2004-03-19",
-//            "title": "Dawn of the Dead",
-//            "video": false,
-//            "vote_average": 7,
-//            "vote_count": 2731
+//        "original_language": "en",
+//        "original_title": "Dawn of the Dead",
+//        "overview": "A group of survivors take refuge in a shopping mall after the world is taken over by aggressive, flesh-eating zombies.",
+//        "popularity": 34.369,
+//        "poster_path": "/iBLQATsIkv005fvIhhbM4MvqhYp.jpg",
+//        "release_date": "2004-03-19",
+//        "title": "Dawn of the Dead",
+//        "video": false,
+//        "vote_average": 7,
+//        "vote_count": 2731
 //    }
 
     @JsonProperty("adult")
     private final boolean adult;
 
     @JsonProperty("genreIds")
-    private final String genreIds;
+    private final List<Long> genreIds;
 
     @JsonProperty("id")
     private final Long id;
