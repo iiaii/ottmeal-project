@@ -23,24 +23,24 @@ public class LatestMovieJobConfig {
     @Value("${job.movieJob.latest.trigger")
     private String trigger;
 
-    @Bean("latestMovieJobDetailFactoryBean")
-    public JobDetailFactoryBean jobDetailFactoryBean(@Qualifier(JOB_NAME) Job job) {
-        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
-
-        // QuartzSpringBatchCombiner.merge();
-
-        return jobDetailFactory;
-    }
-
-    @Bean("latestMovieJobCronTriggerFactoryBean")
-    public CronTriggerFactoryBean cronTriggerFactoryBean(@Qualifier(JOB_NAME) Job job) {
-        CronTriggerFactoryBean cronTriggerFactoryBean = new CronTriggerFactoryBean();
-        cronTriggerFactoryBean.setJobDetail(Objects.requireNonNull(jobDetailFactoryBean(job).getObject()));
-        cronTriggerFactoryBean.setName(job.getName()); // SchedulerNameGenerator.generateQuartzTriggerName(job.getName())
-        cronTriggerFactoryBean.setGroup("");  // SchedulerNameGenerator.generateQuartzTriggerGroupName());
-        cronTriggerFactoryBean.setCronExpression(trigger);
-        return cronTriggerFactoryBean;
-    }
+//    @Bean("latestMovieJobDetailFactoryBean")
+//    public JobDetailFactoryBean jobDetailFactoryBean(@Qualifier(JOB_NAME) Job job) {
+//        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
+//
+//        // QuartzSpringBatchCombiner.merge();
+//
+//        return jobDetailFactory;
+//    }
+//
+//    @Bean("latestMovieJobCronTriggerFactoryBean")
+//    public CronTriggerFactoryBean cronTriggerFactoryBean(@Qualifier(JOB_NAME) Job job) {
+//        CronTriggerFactoryBean cronTriggerFactoryBean = new CronTriggerFactoryBean();
+//        cronTriggerFactoryBean.setJobDetail(Objects.requireNonNull(jobDetailFactoryBean(job).getObject()));
+//        cronTriggerFactoryBean.setName(job.getName()); // SchedulerNameGenerator.generateQuartzTriggerName(job.getName())
+//        cronTriggerFactoryBean.setGroup("");  // SchedulerNameGenerator.generateQuartzTriggerGroupName());
+//        cronTriggerFactoryBean.setCronExpression(trigger);
+//        return cronTriggerFactoryBean;
+//    }
 
     @Bean(JOB_NAME)
     public Job latestMovieJob(@Autowired JobBuilderFactory jobBuilderFactory,

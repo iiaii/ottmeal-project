@@ -9,6 +9,8 @@ public class LatestMovieItemProcessor implements ItemProcessor<LatestMovieRespon
 
     @Override
     public Movie process(LatestMovieResponse item) throws Exception {
+        System.out.println("item.getOriginalTitle() = " + item.getOriginalTitle());
+
         return null;
     }
 }
