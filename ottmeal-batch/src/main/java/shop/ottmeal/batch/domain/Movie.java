@@ -26,6 +26,4 @@ public class Movie {
 
     private Language language;
 
-
-
 }
