@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -18,13 +16,16 @@ import java.util.List;
 public class Movie {
 
     @Id @GeneratedValue
+    @Column(name = "")
     private Long idx;
 
     private Long id;
     private String title;
     private String overview;
     private String posterImgUrl;
-    private List<Genre> genres;
+
+    @ElementCollection
+    private Set<String> genres = new HashSet<>();
 
     private Double popularity;
     private Double voteAverage;

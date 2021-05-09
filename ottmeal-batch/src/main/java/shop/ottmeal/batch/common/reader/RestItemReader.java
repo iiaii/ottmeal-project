@@ -1,6 +1,9 @@
 package shop.ottmeal.batch.common.reader;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
@@ -9,11 +12,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
+@Slf4j
 public class RestItemReader<T> implements ItemReader<T> {
 
     private final RestTemplate restTemplate;
@@ -66,7 +67,16 @@ public class RestItemReader<T> implements ItemReader<T> {
     }
 
     private ResponseEntity<T[]> request() {
-        return this.restTemplate.exchange(this.url, httpMethod, null, clazz);
+        Optional<T[]> results;
+        try {
+            results = (Optional<T[]>) this.restTemplate.exchange(this.url, httpMethod, null, JSONObject.class)
+                    .getBody()
+                    .get("results");
+            log.info("결과: " + results);
+        } catch (JSONException e) {
+            results = Optional.empty();
+        }
+        return ResponseEntity.of(results);
     }
 
     private boolean validate(ResponseEntity<T[]> response) {
