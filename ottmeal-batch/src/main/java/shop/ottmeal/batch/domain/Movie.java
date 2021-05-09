@@ -1,5 +1,6 @@
 package shop.ottmeal.batch.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,4 +34,17 @@ public class Movie {
 
     private Language language;
 
+    @Builder
+    public Movie(Long idx, Long id, String title, String overview, String posterImgUrl, Set<String> genres, Double popularity, Double voteAverage, Long voteCount, Language language) {
+        this.idx = idx;
+        this.id = id;
+        this.title = title;
+        this.overview = overview;
+        this.posterImgUrl = posterImgUrl;
+        this.genres = genres;
+        this.popularity = popularity;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+        this.language = language;
+    }
 }

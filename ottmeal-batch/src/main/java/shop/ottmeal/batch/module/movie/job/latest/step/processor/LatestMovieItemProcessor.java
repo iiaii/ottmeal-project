@@ -12,6 +12,14 @@ public class LatestMovieItemProcessor implements ItemProcessor<LatestMovieRespon
     @Override
     public Movie process(LatestMovieResponse item) throws Exception {
         log.info("title: " + item.getTitle());
-        return null;
+
+
+        Movie movie = Movie.builder()
+                .id(item.getId())
+                .title(item.getTitle())
+                .build();
+
+
+        return movie;
     }
 }

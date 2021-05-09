@@ -18,7 +18,7 @@ import java.util.Objects;
 @Slf4j
 @Configuration
 public class LatestMovieJobConfig {
-    private static final String JOB_NAME = "latestMovieJob";
+    public static final String JOB_NAME = "latestMovieJob";
 
 //    @Value("${job.movieJob.latest.trigger")
 //    private String trigger;
