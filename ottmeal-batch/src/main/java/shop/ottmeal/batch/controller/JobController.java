@@ -30,8 +30,8 @@ public class JobController {
     public String latestMovieJob(@RequestParam("test") String test) {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
-                    .addString("input.test", test)
-                    .addLong("time", System.currentTimeMillis())
+//                    .addString("input.test", test)
+//                    .addLong("time", System.currentTimeMillis())
                     .toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch(Exception e) {
