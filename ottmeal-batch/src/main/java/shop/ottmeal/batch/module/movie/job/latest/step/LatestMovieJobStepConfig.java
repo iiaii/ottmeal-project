@@ -38,7 +38,7 @@ public class LatestMovieJobStepConfig {
 
     @Bean
     public LatestMovieItemProcessor latestMovieProcessor() {
-        return new LatestMovieItemProcessor();
+        return new LatestMovieItemProcessor(restTemplate);
     }
 
     @Bean
