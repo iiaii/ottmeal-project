@@ -23,19 +23,28 @@ public class MovieDetailResponse {
     private final String backdrop_path;
 
     @JsonProperty("belongs_to_collection")
-    private final boolean belongs_to_collection;
+    private final String belongs_to_collection;
 
-    @JsonProperty("genreIds")
-    private final List<Long> genreIds;
+    @JsonProperty("budget")
+    private final Long budget;
+
+    @JsonProperty("genres")
+    private final List<MovieGenresDto> genres;
+
+    @JsonProperty("homepage")
+    private final String homepage;
 
     @JsonProperty("id")
     private final Long id;
 
-    @JsonProperty("originalLanguage")
-    private final String originalLanguage;
+    @JsonProperty("imdb_id")
+    private final String imdb_id;
 
-    @JsonProperty("originalTitle")
-    private final String originalTitle;
+    @JsonProperty("original_language")
+    private final String original_language;
+
+    @JsonProperty("original_title")
+    private final String original_title;
 
     @JsonProperty("overview")
     private final String overview;
@@ -43,11 +52,32 @@ public class MovieDetailResponse {
     @JsonProperty("popularity")
     private final Double popularity;
 
-    @JsonProperty("posterPath")
-    private final String posterPath;
+    @JsonProperty("poster_path")
+    private final Double poster_path;
 
-    @JsonProperty("releaseDate")
-    private final String releaseDate;
+    @JsonProperty("production_companies")
+    private final List<ProductionCompany> production_companies;
+
+    @JsonProperty("production_countries")
+    private final List<ProductionCountry> production_countries;
+
+    @JsonProperty("release_date")
+    private final String release_date;
+
+    @JsonProperty("revenue")
+    private final Long revenue;
+
+    @JsonProperty("runtime")
+    private final Long runtime;
+
+    @JsonProperty("spoken_languages")
+    private final List<SpokenLanguage> spoken_languages;
+
+    @JsonProperty("status")
+    private final String status;
+
+    @JsonProperty("tagline")
+    private final String tagline;
 
     @JsonProperty("title")
     private final String title;
@@ -55,10 +85,10 @@ public class MovieDetailResponse {
     @JsonProperty("video")
     private final boolean video;
 
-    @JsonProperty("voteAverage")
-    private final Double voteAverage;
+    @JsonProperty("vote_average")
+    private final Double vote_average;
 
-    @JsonProperty("voteCount")
-    private final Long voteCount;
+    @JsonProperty("vote_count")
+    private final Long vote_count;
 
 }
