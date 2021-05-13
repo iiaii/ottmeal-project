@@ -19,7 +19,8 @@ public class LatestMovieItemProcessor implements ItemProcessor<LatestMovieRespon
     public Movie process(LatestMovieResponse item) throws Exception {
         log.info("title: " + item.getTitle());
 
-        restTemplate.exchange("https://api.themoviedb.org/3/movie/" + item.getId() + "?api_key=0b1fe3786795a257dd0648d67445af97",
+        restTemplate.exchange("https://api.themoviedb.org/3/movie/" + item.getId() + "" +
+                        "?api_key=0b1fe3786795a257dd0648d67445af97",
                 HttpMethod.GET,
                 null,
                 JSONObject.class);
