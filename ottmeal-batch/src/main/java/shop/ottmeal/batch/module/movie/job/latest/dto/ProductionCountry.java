@@ -7,7 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 
-
+@Getter
+@Setter
+@Builder
+@RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductionCountry {
 
     private final String iso_3166_1;
