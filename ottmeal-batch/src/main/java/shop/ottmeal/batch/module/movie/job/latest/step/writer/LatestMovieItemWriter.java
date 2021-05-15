@@ -11,8 +11,6 @@ public class LatestMovieItemWriter implements ItemWriter<Movie> {
 
     @Override
     public void write(List<? extends Movie> items) throws Exception {
-        log.info("- title = " + items.get(0).getTitle());
-        log.info("- overview = " + items.get(0).getOverview());
-        log.info("- popularity = " + items.get(0).getPopularity());
+
     }
 }

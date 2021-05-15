@@ -42,11 +42,11 @@ public class LatestMovieResponse {
     @JsonProperty("id")
     private final Long id;
 
-    @JsonProperty("originalLanguage")
-    private final String originalLanguage;
+    @JsonProperty("original_language")
+    private final String original_language;
 
-    @JsonProperty("originalTitle")
-    private final String originalTitle;
+    @JsonProperty("original_title")
+    private final String original_title;
 
     @JsonProperty("overview")
     private final String overview;
@@ -54,11 +54,11 @@ public class LatestMovieResponse {
     @JsonProperty("popularity")
     private final Double popularity;
 
-    @JsonProperty("posterPath")
-    private final String posterPath;
+    @JsonProperty("poster_path")
+    private final String poster_path;
 
-    @JsonProperty("releaseDate")
-    private final String releaseDate;
+    @JsonProperty("release_date")
+    private final String release_date;
 
     @JsonProperty("title")
     private final String title;
@@ -66,9 +66,9 @@ public class LatestMovieResponse {
     @JsonProperty("video")
     private final boolean video;
 
-    @JsonProperty("voteAverage")
-    private final Double voteAverage;
+    @JsonProperty("vote_average")
+    private final Double vote_average;
 
-    @JsonProperty("voteCount")
-    private final Long voteCount;
+    @JsonProperty("vote_count")
+    private final Long vote_count;
 }
