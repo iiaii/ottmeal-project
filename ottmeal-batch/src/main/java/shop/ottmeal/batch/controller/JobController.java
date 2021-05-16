@@ -11,27 +11,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import shop.ottmeal.batch.module.movie.job.latest.LatestMovieJobConfig;
 
 @Slf4j
-@Controller
+@RestController
 public class JobController {
 
     private final JobLauncher jobLauncher;
     private final Job job;
 
     @Autowired
-    public JobController(JobLauncher jobLauncher, @Qualifier(LatestMovieJobConfig.JOB_NAME) Job job) {
+    public JobController(JobLauncher jobLauncher,
+                         @Qualifier(LatestMovieJobConfig.JOB_NAME) Job job) {
         this.jobLauncher = jobLauncher;
         this.job = job;
     }
 
     @GetMapping("/latestMovieJob")
-    public String latestMovieJob(@RequestParam("test") String test) {
+    public String latestMovieJob(@RequestParam("version") String version) {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
-//                    .addString("input.test", test)
-//                    .addLong("time", System.currentTimeMillis())
+                    .addString("version", version)
                     .toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch(Exception e) {
