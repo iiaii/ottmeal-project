@@ -11,6 +11,8 @@ public class LatestMovieItemWriter implements ItemWriter<Movie> {
 
     @Override
     public void write(List<? extends Movie> items) throws Exception {
-
+        items.stream()
+                .map(Movie::getTitle)
+                .forEach(System.out::println);
     }
 }
