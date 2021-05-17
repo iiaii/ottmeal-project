@@ -16,6 +16,7 @@ import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.movie.job.latest.dto.LatestMovieResponse;
 import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.latest.step.writer.LatestMovieItemWriter;
+import shop.ottmeal.batch.repository.MovieRepository;
 
 @Slf4j
 @Configuration
@@ -26,6 +27,7 @@ public class LatestMovieJobStepConfig {
     private final RestTemplate restTemplate;
     private final StepBuilderFactory stepBuilderFactory;
     private final PlatformTransactionManager transactionManager;
+    private final MovieRepository movieRepository;
 
     @Bean
     public RestItemReader<LatestMovieResponse> latestMovieReader() {
@@ -52,7 +54,7 @@ public class LatestMovieJobStepConfig {
 
     @Bean
     public LatestMovieItemWriter latestMovieWriter() {
-        return new LatestMovieItemWriter();
+        return new LatestMovieItemWriter(movieRepository);
     }
 
     @Bean(name = STEP_NAME)
