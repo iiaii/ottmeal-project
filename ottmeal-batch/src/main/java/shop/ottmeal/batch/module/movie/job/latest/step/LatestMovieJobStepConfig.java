@@ -30,8 +30,8 @@ public class LatestMovieJobStepConfig {
     private final MovieRepository movieRepository;
 
     @Bean
+    // @StepScope
     public RestItemReader<LatestMovieResponse> latestMovieReader() {
-        log.info("가져오기 ");
         return new RestItemReader<>(this.restTemplate,
                 "https://api.themoviedb.org/3/discover/movie" +
                         "?api_key=0b1fe3786795a257dd0648d67445af97" +
@@ -59,8 +59,8 @@ public class LatestMovieJobStepConfig {
 
     @Bean(name = STEP_NAME)
     public Step step() {
-        log.info("최신 영화 스텝 시작 ");
-        return stepBuilderFactory.get(STEP_NAME) // BatchHelper.createStepName(this.getClass())
+        // BatchHelper.createStepName(this.getClass())
+        return stepBuilderFactory.get(STEP_NAME)
                 .transactionManager(this.transactionManager)
                 .<LatestMovieResponse, Movie>chunk(1)
                 .reader(latestMovieReader())
