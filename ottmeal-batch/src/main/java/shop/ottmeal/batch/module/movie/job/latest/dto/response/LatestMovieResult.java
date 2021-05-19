@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest.dto;
+package shop.ottmeal.batch.module.movie.job.latest.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LatestMovieResponse {
+public class LatestMovieResult {
 
 //    {
 //        "adult": false,

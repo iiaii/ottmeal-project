@@ -3,9 +3,7 @@ package shop.ottmeal.batch.module.movie.job.latest.step;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,7 +11,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.reader.RestItemReader;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.latest.dto.LatestMovieResponse;
+import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResponse;
+import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResult;
 import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.latest.step.writer.LatestMovieItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
@@ -43,7 +42,7 @@ public class LatestMovieJobStepConfig {
                         "&vote_average.gte=0" +
                         "&vote_average.lte=10" +
                         "&release_date.lte=2021-11-04",
-                LatestMovieResponse[].class,
+                LatestMovieResponse.class,
                 HttpMethod.GET);
     }
 
@@ -62,7 +61,7 @@ public class LatestMovieJobStepConfig {
         // BatchHelper.createStepName(this.getClass())
         return stepBuilderFactory.get(STEP_NAME)
                 .transactionManager(this.transactionManager)
-                .<LatestMovieResponse, Movie>chunk(1)
+                .<LatestMovieResult, Movie>chunk(1)
                 .reader(latestMovieReader())
                 .processor(latestMovieProcessor())
                 .writer(latestMovieWriter())

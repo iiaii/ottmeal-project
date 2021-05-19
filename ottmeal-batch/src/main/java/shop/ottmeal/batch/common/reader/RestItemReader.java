@@ -11,20 +11,21 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import shop.ottmeal.batch.module.movie.job.latest.dto.response.BaseResponse;
 
 import java.util.*;
 
 @Slf4j
-public class RestItemReader<T> implements ItemReader<T> {
+public class RestItemReader<T extends BaseResponse> implements ItemReader<T> {
 
     private final RestTemplate restTemplate;
     private final String url;
     private final boolean isEmpty;
 
     @Getter
-    private List<T> responseList;
+    private T response;
     private int index;
-    private Class<T[]> clazz;
+    private Class<T> clazz;
     private HttpMethod httpMethod;
 
     public RestItemReader() {
@@ -33,7 +34,7 @@ public class RestItemReader<T> implements ItemReader<T> {
         this.isEmpty = true;
     }
 
-    public RestItemReader(RestTemplate restTemplate, String url, Class<T[]> clazz, HttpMethod httpMethod) {
+    public RestItemReader(RestTemplate restTemplate, String url, Class<T> clazz, HttpMethod httpMethod) {
         this.restTemplate = restTemplate;
         this.url = url;
         this.clazz = clazz;
@@ -47,39 +48,31 @@ public class RestItemReader<T> implements ItemReader<T> {
             return null;
         }
 
-        if (Objects.isNull(this.responseList)) {
-            this.responseList = refresh();
+        if (Objects.isNull(this.response)) {
+            this.response = refresh();
         }
 
-        if (this.index >= this.responseList.size()) {
+        if (this.index >= this.response.size()) {
             return null;
         }
 
-        return this.responseList.get(this.index++);
+        return this.response.get(this.index++);
     }
 
     private List<T> refresh() {
-        ResponseEntity<T[]> response = request();
+        ResponseEntity<T> response = request();
         if (!validate(response)) {
             return Collections.emptyList();
         }
         return Arrays.asList(response.getBody());
     }
 
-    private ResponseEntity<T[]> request() {
-        Optional<T[]> results;
-        try {
-            results = (Optional<T[]>) this.restTemplate.exchange(this.url, httpMethod, null, JSONObject.class)
-                    .getBody()
-                    .get("results");
-            log.info("결과: " + results);
-        } catch (JSONException e) {
-            results = Optional.empty();
-        }
-        return ResponseEntity.of(results);
+    private ResponseEntity<T> request() {
+        return this.restTemplate.exchange(this.url, httpMethod, null, clazz);
+
     }
 
-    private boolean validate(ResponseEntity<T[]> response) {
+    private boolean validate(ResponseEntity<T> response) {
         return Objects.nonNull(response) && response.hasBody();
     }
 }
