@@ -52,19 +52,19 @@ public class RestItemReader<T extends BaseResponse> implements ItemReader<T> {
             this.response = refresh();
         }
 
-        if (this.index >= this.response.size()) {
+        if (this.index >= this.response.getResults().size()) {
             return null;
         }
 
-        return this.response.get(this.index++);
+        return this.response.getResults().get(this.index++);
     }
 
-    private List<T> refresh() {
+    private T refresh() {
         ResponseEntity<T> response = request();
         if (!validate(response)) {
-            return Collections.emptyList();
+            return null;
         }
-        return Arrays.asList(response.getBody());
+        return response.getBody();
     }
 
     private ResponseEntity<T> request() {
