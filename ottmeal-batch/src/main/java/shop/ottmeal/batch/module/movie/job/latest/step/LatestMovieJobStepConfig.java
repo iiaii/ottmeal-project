@@ -6,14 +6,12 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
-import shop.ottmeal.batch.common.reader.RestItemReader;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResponse;
 import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResult;
 import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
+import shop.ottmeal.batch.module.movie.job.latest.step.reader.LatestMovieItemReader;
 import shop.ottmeal.batch.module.movie.job.latest.step.writer.LatestMovieItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
 
@@ -30,20 +28,8 @@ public class LatestMovieJobStepConfig {
 
     @Bean
     // @StepScope
-    public RestItemReader<LatestMovieResponse> latestMovieReader() {
-        return new RestItemReader<>(this.restTemplate,
-                "https://api.themoviedb.org/3/discover/movie" +
-                        "?api_key=0b1fe3786795a257dd0648d67445af97" +
-                        "&certification_country=KR" +
-                        "&ott_region=KR" +
-                        "&sort_by=primary_release_date.desc,popularity.desc" +
-                        "&with_ott_providers=8" +
-                        "&page=1" +
-                        "&vote_average.gte=0" +
-                        "&vote_average.lte=10" +
-                        "&release_date.lte=2021-11-04",
-                LatestMovieResponse.class,
-                HttpMethod.GET);
+    public LatestMovieItemReader latestMovieReader() {
+        return new LatestMovieItemReader(restTemplate);
     }
 
     @Bean
