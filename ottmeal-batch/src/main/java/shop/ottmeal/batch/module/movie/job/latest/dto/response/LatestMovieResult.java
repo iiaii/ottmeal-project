@@ -2,17 +2,13 @@ package shop.ottmeal.batch.module.movie.job.latest.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
-@Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LatestMovieResult {
 
@@ -34,41 +30,41 @@ public class LatestMovieResult {
 //    }
 
     @JsonProperty("adult")
-    private final boolean adult;
+    private boolean adult;
 
-    @JsonProperty("genreIds")
-    private final List<Long> genreIds;
+    @JsonProperty("genre_ids")
+    private List<Long> genre_ids;
 
     @JsonProperty("id")
-    private final Long id;
+    private Long id;
 
     @JsonProperty("original_language")
-    private final String original_language;
+    private String original_language;
 
     @JsonProperty("original_title")
-    private final String original_title;
+    private String original_title;
 
     @JsonProperty("overview")
-    private final String overview;
+    private String overview;
 
     @JsonProperty("popularity")
-    private final Double popularity;
+    private Double popularity;
 
     @JsonProperty("poster_path")
-    private final String poster_path;
+    private String poster_path;
 
     @JsonProperty("release_date")
-    private final String release_date;
+    private String release_date;
 
     @JsonProperty("title")
-    private final String title;
+    private String title;
 
     @JsonProperty("video")
-    private final boolean video;
+    private boolean video;
 
     @JsonProperty("vote_average")
-    private final Double vote_average;
+    private Double vote_average;
 
     @JsonProperty("vote_count")
-    private final Long vote_count;
+    private Long vote_count;
 }
