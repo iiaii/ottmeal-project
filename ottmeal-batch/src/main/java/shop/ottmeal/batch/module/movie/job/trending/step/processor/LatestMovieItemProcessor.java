@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest.step.processor;
+package shop.ottmeal.batch.module.movie.job.trending.step.processor;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +7,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResult;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.LatestMovieResult;
 
 @Slf4j
 @RequiredArgsConstructor

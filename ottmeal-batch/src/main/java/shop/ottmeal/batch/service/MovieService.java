@@ -2,7 +2,7 @@ package shop.ottmeal.batch.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResult;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.LatestMovieResult;
 import shop.ottmeal.batch.repository.MovieRepository;
 
 @Service

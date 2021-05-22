@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest.step;
+package shop.ottmeal.batch.module.movie.job.trending.step;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.latest.dto.response.LatestMovieResult;
-import shop.ottmeal.batch.module.movie.job.latest.step.processor.LatestMovieItemProcessor;
-import shop.ottmeal.batch.module.movie.job.latest.step.reader.LatestMovieItemReader;
-import shop.ottmeal.batch.module.movie.job.latest.step.writer.LatestMovieItemWriter;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.LatestMovieResult;
+import shop.ottmeal.batch.module.movie.job.trending.step.processor.LatestMovieItemProcessor;
+import shop.ottmeal.batch.module.movie.job.trending.step.reader.LatestMovieItemReader;
+import shop.ottmeal.batch.module.movie.job.trending.step.writer.LatestMovieItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
 
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class LatestMovieJobStepConfig {
+public class TrendingMovieStepConfig {
     public static final String STEP_NAME = "latestMovieStep";
 
     private final RestTemplate restTemplate;
@@ -28,17 +28,17 @@ public class LatestMovieJobStepConfig {
 
     @Bean
     // @StepScope
-    public LatestMovieItemReader latestMovieReader() {
+    public LatestMovieItemReader trendingMovieReader() {
         return new LatestMovieItemReader(restTemplate);
     }
 
     @Bean
-    public LatestMovieItemProcessor latestMovieProcessor() {
+    public LatestMovieItemProcessor trendingMovieProcessor() {
         return new LatestMovieItemProcessor(restTemplate);
     }
 
     @Bean
-    public LatestMovieItemWriter latestMovieWriter() {
+    public LatestMovieItemWriter trendingMovieWriter() {
         return new LatestMovieItemWriter(movieRepository);
     }
 
@@ -47,10 +47,10 @@ public class LatestMovieJobStepConfig {
         // BatchHelper.createStepName(this.getClass())
         return stepBuilderFactory.get(STEP_NAME)
                 .transactionManager(this.transactionManager)
-                .<LatestMovieResult, Movie>chunk(1)
-                .reader(latestMovieReader())
-                .processor(latestMovieProcessor())
-                .writer(latestMovieWriter())
+                .<LatestMovieResult, Movie>chunk(10)
+                .reader(trendingMovieReader())
+                .processor(trendingMovieProcessor())
+                .writer(trendingMovieWriter())
                 .faultTolerant()
                 .retryLimit(0)
                 .build();

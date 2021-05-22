@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest;
+package shop.ottmeal.batch.module.movie.job.trending;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -6,19 +6,14 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
-import org.springframework.scheduling.quartz.JobDetailFactoryBean;
-import shop.ottmeal.batch.module.movie.job.latest.step.LatestMovieJobStepConfig;
-
-import java.util.Objects;
+import shop.ottmeal.batch.module.movie.job.trending.step.TrendingMovieStepConfig;
 
 @Slf4j
 @Configuration
-public class LatestMovieJobConfig {
-    public static final String JOB_NAME = "latestMovieJob";
+public class TrendingJobConfig {
+    public static final String JOB_NAME = "trendingJob";
 
 //    @Value("${job.movieJob.latest.trigger")
 //    private String trigger;
@@ -44,9 +39,9 @@ public class LatestMovieJobConfig {
 
     @Bean(JOB_NAME)
     public Job latestMovieJob(@Autowired JobBuilderFactory jobBuilderFactory,
-                              @Qualifier(LatestMovieJobStepConfig.STEP_NAME) Step latestMovieStep) {
+                              @Qualifier(TrendingMovieStepConfig.STEP_NAME) Step trendingMovieStep) {
         return jobBuilderFactory.get(JOB_NAME)
-                .start(latestMovieStep)
+                .start(trendingMovieStep)
                 .build();
     }
 }

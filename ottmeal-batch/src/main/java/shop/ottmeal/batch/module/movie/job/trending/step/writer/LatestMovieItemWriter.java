@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest.step.writer;
+package shop.ottmeal.batch.module.movie.job.trending.step.writer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemWriter;

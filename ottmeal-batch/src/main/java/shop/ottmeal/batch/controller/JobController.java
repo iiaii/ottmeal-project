@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import shop.ottmeal.batch.module.movie.job.latest.LatestMovieJobConfig;
+import shop.ottmeal.batch.module.movie.job.trending.TrendingJobConfig;
 
 @Slf4j
 @RestController
@@ -21,7 +21,7 @@ public class JobController {
 
     @Autowired
     public JobController(JobLauncher jobLauncher,
-                         @Qualifier(LatestMovieJobConfig.JOB_NAME) Job job) {
+                         @Qualifier(TrendingJobConfig.JOB_NAME) Job job) {
         this.jobLauncher = jobLauncher;
         this.job = job;
     }

@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.latest.dto;
+package shop.ottmeal.batch.module.movie.job.trending.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
@@ -11,9 +11,10 @@ import lombok.Setter;
 @Builder
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SpokenLanguage {
+public class ProductionCompany {
 
-    private final String english_name;
-    private final String iso_639_1;
+    private final Long id;
+    private final String logo_path;
     private final String name;
+    private final String origin_country;
 }
