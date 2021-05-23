@@ -10,13 +10,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LatestMovieResponse extends BaseResponse {
+public class TrendingResponse extends BaseResponse {
 
     @JsonProperty("page")
     private Integer page;
 
     @JsonProperty("results")
-    private List<TrendingMovieResult> results;
+    private List<TrendingResult> results;
 
     @JsonProperty("total_pages")
     private Integer total_pages;

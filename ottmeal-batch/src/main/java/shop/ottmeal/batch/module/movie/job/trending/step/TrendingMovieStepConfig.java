@@ -12,8 +12,8 @@ import shop.ottmeal.batch.common.RequestGenerator;
 import shop.ottmeal.batch.common.enums.MediaType;
 import shop.ottmeal.batch.common.enums.TimeWindow;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingMovieResult;
-import shop.ottmeal.batch.module.movie.job.trending.step.processor.LatestMovieItemProcessor;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.movie.job.trending.step.processor.TrendingMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.trending.step.reader.TrendingItemReader;
 import shop.ottmeal.batch.module.movie.job.trending.step.writer.LatestMovieItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
@@ -36,8 +36,8 @@ public class TrendingMovieStepConfig {
     }
 
     @Bean
-    public LatestMovieItemProcessor trendingMovieProcessor() {
-        return new LatestMovieItemProcessor(restTemplate);
+    public TrendingMovieItemProcessor trendingMovieProcessor() {
+        return new TrendingMovieItemProcessor(restTemplate);
     }
 
     @Bean
@@ -50,7 +50,7 @@ public class TrendingMovieStepConfig {
         // BatchHelper.createStepName(this.getClass())
         return stepBuilderFactory.get(STEP_NAME)
                 .transactionManager(this.transactionManager)
-                .<TrendingMovieResult, Movie>chunk(10)
+                .<TrendingResult, Movie>chunk(10)
                 .reader(trendingMovieReader())
                 .processor(trendingMovieProcessor())
                 .writer(trendingMovieWriter())

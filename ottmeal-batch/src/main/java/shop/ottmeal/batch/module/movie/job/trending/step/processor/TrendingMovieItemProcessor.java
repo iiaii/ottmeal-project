@@ -6,17 +6,19 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingMovieResult;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 
 @Slf4j
 @RequiredArgsConstructor
-public class LatestMovieItemProcessor implements ItemProcessor<TrendingMovieResult, Movie> {
+public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult, Movie> {
 
     private final RestTemplate restTemplate;
+    private final Request<>
 
     @Override
-    public Movie process(TrendingMovieResult item) throws Exception {
+    public Movie process(TrendingResult item) throws Exception {
         restTemplate.exchange("https://api.themoviedb.org/3/movie/" + item.getId() + "" +
                         "?api_key=0b1fe3786795a257dd0648d67445af97",
                 HttpMethod.GET,

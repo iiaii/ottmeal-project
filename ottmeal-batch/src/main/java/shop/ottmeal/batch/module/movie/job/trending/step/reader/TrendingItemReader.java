@@ -38,6 +38,5 @@ public class TrendingItemReader <Response extends BaseResponse, Result> implemen
     private Response request() {
         return restTemplate.exchange(request.getUrl(), request.getHttpMethod(), null, request.getResponseType())
                 .getBody();
-
     }
 }

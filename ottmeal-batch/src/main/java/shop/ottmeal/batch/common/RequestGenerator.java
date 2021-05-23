@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import shop.ottmeal.batch.common.enums.MediaType;
 import shop.ottmeal.batch.common.enums.TimeWindow;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.LatestMovieResponse;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResponse;
 
 @RequiredArgsConstructor
 public class RequestGenerator {
@@ -22,11 +22,11 @@ public class RequestGenerator {
      * @param timeWindow
      * @return
      */
-    public static Request<LatestMovieResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
-        return Request.<LatestMovieResponse>builder()
+    public static Request<TrendingResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
+        return Request.<TrendingResponse>builder()
                 .url(TMDB_BASE_URL + mediaType.getResource() + timeWindow.getResource())
                 .httpMethod(HttpMethod.GET)
-                .responseType(LatestMovieResponse.class)
+                .responseType(TrendingResponse.class)
                 .build();
     }
 }
