@@ -29,8 +29,32 @@ public class MovieDetailResponse {
     @JsonProperty("genres")
     private List<MovieGenre> genres;
 
-    @JsonProperty("String")
-    private String String;
+    @JsonProperty("homepage")
+    private String homepage;
+
+    @JsonProperty("id")
+    private Long id;
+
+    @JsonProperty("imdb_id")
+    private String imdb_id;
+
+    @JsonProperty("original_language")
+    private String original_language;
+
+    @JsonProperty("original_title")
+    private String original_title;
+
+    @JsonProperty("overview")
+    private String overview;
+
+    @JsonProperty("popularity")
+    private Double popularity;
+
+    @JsonProperty("poster_path")
+    private String poster_path;
+
+    @JsonProperty("production_companies")
+    private List<MovieGenre> production_companies;
 
 //    "adult": false,
 //                "backdrop_path": "/z6fmvhQXS5hbXSizx4DGajjBmGD.jpg",
