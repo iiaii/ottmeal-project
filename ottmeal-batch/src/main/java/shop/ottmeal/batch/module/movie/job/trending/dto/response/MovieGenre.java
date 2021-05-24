@@ -10,8 +10,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrendingResult {
+public class MovieGenre {
 
     @JsonProperty("id")
     private Long id;
+
+    @JsonProperty("name")
+    private String name;
 }
