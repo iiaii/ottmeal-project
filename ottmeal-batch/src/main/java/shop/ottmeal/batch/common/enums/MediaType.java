@@ -7,7 +7,6 @@ import lombok.ToString;
 @Getter
 @RequiredArgsConstructor
 public enum MediaType {
-    All("/all"),
     Movie("/movie"),
     Tv("/tv"),
     Person("/person");

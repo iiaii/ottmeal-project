@@ -88,5 +88,4 @@ public class MovieDetailResponse {
 
     @JsonProperty("vote_count")
     private int vote_count;
-
 }

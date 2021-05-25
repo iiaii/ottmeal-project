@@ -4,34 +4,41 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.NonTransientResourceException;
+import org.springframework.batch.item.ParseException;
+import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
+import shop.ottmeal.batch.domain.BaseMedia;
 import shop.ottmeal.batch.domain.Movie;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.BaseResponse;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 
 @Slf4j
 @RequiredArgsConstructor
-public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult, Movie> {
+public class TrendingMovieItemProcessor <Response extends BaseResponse, Result extends BaseMedia> implements ItemProcessor<TrendingResult, Result> {
 
-    private final RestTemplate restTemplate;
-    private final Request<>
+    private RestTemplate restTemplate;
+    private Request<Response> request;
+
+    public TrendingMovieItemProcessor(RestTemplate restTemplate, Request<Response> request) {
+        this.restTemplate = restTemplate;
+        this.request = request;
+    }
 
     @Override
-    public Movie process(TrendingResult item) throws Exception {
-        restTemplate.exchange("https://api.themoviedb.org/3/movie/" + item.getId() + "" +
-                        "?api_key=0b1fe3786795a257dd0648d67445af97",
-                HttpMethod.GET,
-                null,
-                JSONObject.class);
+    public Result process(TrendingResult item) throws Exception {
+        Response result = request();
 
-        Movie movie = Movie.builder()
-                .id(item.getId())
-                .title(item.getTitle())
-                .build();
+        BaseMedia
 
+        return (Result) movie;
+    }
 
-        return movie;
+    private Response request() {
+        return restTemplate.exchange(request.getUrl(), request.getHttpMethod(), null, request.getResponseType())
+                .getBody();
     }
 }
 
