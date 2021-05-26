@@ -38,7 +38,7 @@ public class TrendingJobConfig {
 //    }
 
     @Bean(JOB_NAME)
-    public Job latestMovieJob(@Autowired JobBuilderFactory jobBuilderFactory,
+    public Job trendingJob(@Autowired JobBuilderFactory jobBuilderFactory,
                               @Qualifier(TrendingMovieStepConfig.STEP_NAME) Step trendingMovieStep) {
         return jobBuilderFactory.get(JOB_NAME)
                 .start(trendingMovieStep)

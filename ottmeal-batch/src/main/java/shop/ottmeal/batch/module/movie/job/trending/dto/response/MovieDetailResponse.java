@@ -20,14 +20,14 @@ public class MovieDetailResponse {
     @JsonProperty("backdrop_path")
     private String backdrop_path;
 
-    @JsonProperty("belongs_to_collection")
-    private Object belongs_to_collection;
+//    @JsonProperty("belongs_to_collection")
+//    private Object belongs_to_collection;
 
     @JsonProperty("budget")
     private int budget;
 
     @JsonProperty("genres")
-    private List<MovieGenre> genres;
+    private List<MovieGenreResponse> genres;
 
     @JsonProperty("homepage")
     private String homepage;
@@ -54,10 +54,10 @@ public class MovieDetailResponse {
     private String poster_path;
 
     @JsonProperty("production_companies")
-    private List<MovieProductionCompany> production_companies;
+    private List<MovieProductionCompanyResponse> production_companies;
 
     @JsonProperty("production_countries")
-    private List<MovieProductionCountry> production_countries;
+    private List<MovieProductionCountryResponse> production_countries;
 
     @JsonProperty("release_date")
     private String release_date;
@@ -69,7 +69,7 @@ public class MovieDetailResponse {
     private Integer runtime;
 
     @JsonProperty("spoken_languages")
-    private List<MovieSpokenLanguage> spoken_languages;
+    private List<MovieSpokenLanguageResponse> spoken_languages;
 
     @JsonProperty("status")
     private String status;

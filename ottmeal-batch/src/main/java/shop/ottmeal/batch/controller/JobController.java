@@ -26,7 +26,7 @@ public class JobController {
         this.job = job;
     }
 
-    @GetMapping("/latestMovieJob")
+    @GetMapping("/trendingJob")
     public String latestMovieJob(@RequestParam("version") String version) {
         try {
             JobParameters jobParameters = new JobParametersBuilder()

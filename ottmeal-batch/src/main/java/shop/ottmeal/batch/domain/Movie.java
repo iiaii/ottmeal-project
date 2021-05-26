@@ -7,48 +7,76 @@ import lombok.extern.slf4j.Slf4j;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
 @Entity
 @Table(name = "movie")
-@Slf4j
 public class Movie {
 
     @Id @GeneratedValue
+    @Column(name = "movie_idx")
     private Long idx;
+
     private boolean adult;
+
     private String backdropPath;
-    private Object belongsToCollection;
+
     private int budget;
-    private List<MovieGenre> genres;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    private List<MovieGenre> genres = new ArrayList<>();
+
     private String homepage;
+
     private Long id;
+
     private String imdbId;
+
     private String originalLanguage;
+
     private String originalTitle;
+
     private String overview;
+
     private Double popularity;
+
     private String posterPath;
-    private List<MovieProductionCompany> productionCompanies;
-    private List<MovieProductionCountry> productionCountries;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    private List<MovieProductionCompany> productionCompanies = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    private List<MovieProductionCountry> productionCountries = new ArrayList<>();
+
     private String release_date;
+
     private int revenue;
+
     private Integer runtime;
-    private List<MovieSpokenLanguage> spokenLanguages;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    private List<MovieSpokenLanguage> spokenLanguages = new ArrayList<>();
+
     private String status;
+
     private String tagline;
+
     private String title;
+
     private boolean video;
+
     private Double voteAverage;
+
     private int voteCount;
 
     @Builder
-    public Movie(boolean adult, String backdropPath, Object belongsToCollection, int budget, List<MovieGenre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<MovieProductionCompany> productionCompanies, List<MovieProductionCountry> productionCountries, String release_date, int revenue, Integer runtime, List<MovieSpokenLanguage> spokenLanguages, String status, String tagline, String title, boolean video, Double voteAverage, int voteCount) {
+    public Movie(boolean adult, String backdropPath, int budget, List<MovieGenre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<MovieProductionCompany> productionCompanies, List<MovieProductionCountry> productionCountries, String release_date, int revenue, Integer runtime, List<MovieSpokenLanguage> spokenLanguages, String status, String tagline, String title, boolean video, Double voteAverage, int voteCount) {
         this.adult = adult;
         this.backdropPath = backdropPath;
-        this.belongsToCollection = belongsToCollection;
         this.budget = budget;
         this.genres = genres;
         this.homepage = homepage;
@@ -77,9 +105,8 @@ public class Movie {
         return Movie.builder()
                 .adult(movieDetailResponse.isAdult())
                 .backdropPath(movieDetailResponse.getBackdrop_path())
-                .belongsToCollection(movieDetailResponse.getBelongs_to_collection())
                 .budget(movieDetailResponse.getBudget())
-                .genres(movieDetailResponse.getGenres())
+                .genres(movieDetailResponse.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList()))
                 .homepage(movieDetailResponse.getHomepage())
                 .id(movieDetailResponse.getId())
                 .imdbId(movieDetailResponse.getImdb_id())
@@ -88,12 +115,12 @@ public class Movie {
                 .overview(movieDetailResponse.getOverview())
                 .popularity(movieDetailResponse.getPopularity())
                 .posterPath(movieDetailResponse.getPoster_path())
-                .productionCompanies(movieDetailResponse.getProduction_companies())
-                .productionCountries(movieDetailResponse.getProduction_countries())
+                .productionCompanies(movieDetailResponse.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList()))
+                .productionCountries(movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList()))
                 .release_date(movieDetailResponse.getRelease_date())
                 .revenue(movieDetailResponse.getRevenue())
                 .runtime(movieDetailResponse.getRuntime())
-                .spokenLanguages(movieDetailResponse.getSpoken_languages())
+                .spokenLanguages(movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList()))
                 .status(movieDetailResponse.getStatus())
                 .tagline(movieDetailResponse.getTagline())
                 .title(movieDetailResponse.getTitle())

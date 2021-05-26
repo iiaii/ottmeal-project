@@ -15,14 +15,14 @@ import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 import shop.ottmeal.batch.module.movie.job.trending.step.processor.TrendingMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.trending.step.reader.TrendingItemReader;
-import shop.ottmeal.batch.module.movie.job.trending.step.writer.LatestMovieItemWriter;
+import shop.ottmeal.batch.module.movie.job.trending.step.writer.TrendingItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
 
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class TrendingMovieStepConfig {
-    public static final String STEP_NAME = "latestMovieStep";
+    public static final String STEP_NAME = "trendingMovieStep";
 
     private final RestTemplate restTemplate;
     private final StepBuilderFactory stepBuilderFactory;
@@ -41,8 +41,8 @@ public class TrendingMovieStepConfig {
     }
 
     @Bean
-    public LatestMovieItemWriter trendingMovieWriter() {
-        return new LatestMovieItemWriter(movieRepository);
+    public TrendingItemWriter trendingMovieWriter() {
+        return new TrendingItemWriter(movieRepository);
     }
 
     @Bean(name = STEP_NAME)
