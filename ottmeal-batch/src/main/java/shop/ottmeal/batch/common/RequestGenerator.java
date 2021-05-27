@@ -12,6 +12,8 @@ public class RequestGenerator {
 
     private final static String TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
+    private final static String apiKey = "?api_key=0b1fe3786795a257dd0648d67445af97";
+
     /**
      * 트렌딩 미디어 리스트 Request 생성
      *
@@ -25,7 +27,7 @@ public class RequestGenerator {
      */
     public static Request<TrendingResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
         return Request.<TrendingResponse>builder()
-                .url(TMDB_BASE_URL + mediaType.getResource() + timeWindow.getResource())
+                .url(TMDB_BASE_URL + "/trending" + mediaType.getResource() + timeWindow.getResource() + apiKey)
                 .httpMethod(HttpMethod.GET)
                 .responseType(TrendingResponse.class)
                 .build();
@@ -55,7 +57,7 @@ public class RequestGenerator {
      */
     private static <T> Request<T> getMediaDetailRequest(MediaType mediaType, Long mediaId, Class<T> responseType) {
         return Request.<T>builder()
-                .url(TMDB_BASE_URL + mediaType.getResource() + "/" + mediaId)
+                .url(TMDB_BASE_URL + mediaType.getResource() + "/" + mediaId + apiKey)
                 .httpMethod(HttpMethod.GET)
                 .responseType(responseType)
                 .build();
