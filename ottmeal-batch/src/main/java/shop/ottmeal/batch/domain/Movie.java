@@ -40,6 +40,7 @@ public class Movie {
 
     private String originalTitle;
 
+    @Lob
     private String overview;
 
     private Double popularity;
