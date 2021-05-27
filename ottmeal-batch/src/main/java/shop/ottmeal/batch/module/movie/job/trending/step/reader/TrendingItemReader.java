@@ -9,10 +9,9 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.BaseResponse;
+import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 
-@Slf4j
-@RequiredArgsConstructor
-public class TrendingItemReader <Response extends BaseResponse, Result> implements ItemReader<Result> {
+public class TrendingItemReader <Response extends BaseResponse> implements ItemReader<TrendingResult> {
 
     private int index;
     private RestTemplate restTemplate;
@@ -27,12 +26,16 @@ public class TrendingItemReader <Response extends BaseResponse, Result> implemen
     }
 
     @Override
-    public Result read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+    public TrendingResult read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
         response = response.getResults().isEmpty()
                 ? request()
                 : response;
 
-        return (Result) response.getResults().get(index++);
+        if (response.getResults().size() <= index) {
+            return null;
+        }
+
+        return (TrendingResult) response.getResults().get(index++);
     }
 
     private Response request() {

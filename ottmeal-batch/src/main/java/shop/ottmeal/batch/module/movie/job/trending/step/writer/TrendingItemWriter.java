@@ -2,23 +2,23 @@ package shop.ottmeal.batch.module.movie.job.trending.step.writer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.data.jpa.repository.JpaRepository;
+import shop.ottmeal.batch.domain.Movie;
+import shop.ottmeal.batch.repository.MovieRepository;
 
 import java.util.List;
 
-@Slf4j
-public class TrendingItemWriter <T> implements ItemWriter<T> {
+public class TrendingItemWriter implements ItemWriter<Movie> {
 
-    private JpaRepository repository;
+    private MovieRepository movieRepository;
 
-    public TrendingItemWriter(JpaRepository repository) {
-        this.repository = repository;
+    public TrendingItemWriter(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
     }
 
     @Override
-    public void write(List<? extends T> items) throws Exception {
+    public void write(List<? extends Movie> items) throws Exception {
         items.stream()
-                .forEach(repository::save);
+                .forEach(movieRepository::save);
 
     }
 }

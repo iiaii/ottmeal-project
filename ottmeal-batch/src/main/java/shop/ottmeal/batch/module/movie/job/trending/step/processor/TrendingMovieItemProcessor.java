@@ -11,8 +11,6 @@ import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.MovieDetailResponse;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 
-@Slf4j
-@RequiredArgsConstructor
 public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult, Movie> {
 
     private RestTemplate restTemplate;
