@@ -21,7 +21,7 @@ public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult,
 
     @Override
     public Movie process(TrendingResult item) throws Exception {
-        return Movie.toEntity(request(item.getId()));
+        return MovieDetailResponse.toEntity(request(item.getId()));
     }
 
     private MovieDetailResponse request(Long id) {

@@ -57,7 +57,7 @@ public class RequestGenerator {
      */
     private static <T> Request<T> getMediaDetailRequest(MediaType mediaType, Long mediaId, Class<T> responseType) {
         return Request.<T>builder()
-                .url(TMDB_BASE_URL + mediaType.getResource() + "/" + mediaId + apiKey)
+                .url(TMDB_BASE_URL + mediaType.getResource() + "/" + mediaId + apiKey + "&language=ko")
                 .httpMethod(HttpMethod.GET)
                 .responseType(responseType)
                 .build();

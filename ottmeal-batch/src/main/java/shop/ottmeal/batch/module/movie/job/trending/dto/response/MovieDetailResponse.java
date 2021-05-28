@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.batch.domain.Movie;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -88,4 +90,33 @@ public class MovieDetailResponse {
 
     @JsonProperty("vote_count")
     private int vote_count;
+
+    public static Movie toEntity(MovieDetailResponse movieDetailResponse) {
+        return Movie.builder()
+                .adult(movieDetailResponse.isAdult())
+                .backdropPath(movieDetailResponse.getBackdrop_path())
+                .budget(movieDetailResponse.getBudget())
+                .genres(movieDetailResponse.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList()))
+                .homepage(movieDetailResponse.getHomepage())
+                .id(movieDetailResponse.getId())
+                .imdbId(movieDetailResponse.getImdb_id())
+                .originalLanguage(movieDetailResponse.getOriginal_language())
+                .originalTitle(movieDetailResponse.getOriginal_title())
+                .overview(movieDetailResponse.getOverview())
+                .popularity(movieDetailResponse.getPopularity())
+                .posterPath(movieDetailResponse.getPoster_path())
+                .productionCompanies(movieDetailResponse.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList()))
+                .productionCountries(movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList()))
+                .release_date(movieDetailResponse.getRelease_date())
+                .revenue(movieDetailResponse.getRevenue())
+                .runtime(movieDetailResponse.getRuntime())
+                .spokenLanguages(movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList()))
+                .status(movieDetailResponse.getStatus())
+                .tagline(movieDetailResponse.getTagline())
+                .title(movieDetailResponse.getTitle())
+                .video(movieDetailResponse.isVideo())
+                .voteAverage(movieDetailResponse.getVote_average())
+                .voteCount(movieDetailResponse.getVote_count())
+                .build();
+    }
 }
