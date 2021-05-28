@@ -16,7 +16,7 @@ import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 import shop.ottmeal.batch.module.movie.job.trending.step.processor.TrendingMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.trending.step.reader.TrendingItemReader;
 import shop.ottmeal.batch.module.movie.job.trending.step.writer.TrendingMovieItemWriter;
-import shop.ottmeal.batch.repository.MovieRepository;
+import shop.ottmeal.batch.repository.*;
 
 @Slf4j
 @Configuration
@@ -28,6 +28,10 @@ public class TrendingMovieStepConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final PlatformTransactionManager transactionManager;
     private final MovieRepository movieRepository;
+    private final MovieGenreRepository movieGenreRepository;
+    private final MovieProductionCompanyRepository movieProductionCompanyRepository;
+    private final MovieProductionCountryRepository movieProductionCountryRepository;
+    private final MovieSpokenLanguageRepository movieSpokenLanguageRepository;
 
     @Bean
     // @StepScope
@@ -42,7 +46,7 @@ public class TrendingMovieStepConfig {
 
     @Bean
     public TrendingMovieItemWriter trendingMovieWriter() {
-        return new TrendingMovieItemWriter(movieRepository);
+        return new TrendingMovieItemWriter(movieRepository, movieGenreRepository, movieProductionCompanyRepository, movieProductionCountryRepository, movieSpokenLanguageRepository);
     }
 
     @Bean(name = STEP_NAME)
