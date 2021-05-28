@@ -15,7 +15,7 @@ import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
 import shop.ottmeal.batch.module.movie.job.trending.step.processor.TrendingMovieItemProcessor;
 import shop.ottmeal.batch.module.movie.job.trending.step.reader.TrendingItemReader;
-import shop.ottmeal.batch.module.movie.job.trending.step.writer.TrendingItemWriter;
+import shop.ottmeal.batch.module.movie.job.trending.step.writer.TrendingMovieItemWriter;
 import shop.ottmeal.batch.repository.MovieRepository;
 
 @Slf4j
@@ -41,8 +41,8 @@ public class TrendingMovieStepConfig {
     }
 
     @Bean
-    public TrendingItemWriter trendingMovieWriter() {
-        return new TrendingItemWriter(movieRepository);
+    public TrendingMovieItemWriter trendingMovieWriter() {
+        return new TrendingMovieItemWriter(movieRepository);
     }
 
     @Bean(name = STEP_NAME)

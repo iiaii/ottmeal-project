@@ -3,6 +3,7 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -23,6 +24,7 @@ public class MovieProductionCompany {
 
     private String originCountry;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_idx", insertable = false, updatable = false)
     private Movie movie;

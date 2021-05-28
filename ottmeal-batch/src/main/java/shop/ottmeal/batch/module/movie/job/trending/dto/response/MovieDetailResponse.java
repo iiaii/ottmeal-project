@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.ottmeal.batch.domain.Movie;
+import shop.ottmeal.batch.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -92,11 +92,16 @@ public class MovieDetailResponse {
     private int vote_count;
 
     public static Movie toEntity(MovieDetailResponse movieDetailResponse) {
+        List<MovieGenre> movieGenres = movieDetailResponse.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList());
+        List<MovieProductionCompany> movieProductionCompanies = movieDetailResponse.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList());
+        List<MovieProductionCountry> movieProductionCountries = movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList());
+        List<MovieSpokenLanguage> movieSpokenLanguages = movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList());
+
         return Movie.builder()
                 .adult(movieDetailResponse.isAdult())
                 .backdropPath(movieDetailResponse.getBackdrop_path())
                 .budget(movieDetailResponse.getBudget())
-                .genres(movieDetailResponse.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList()))
+                .genres(movieGenres)
                 .homepage(movieDetailResponse.getHomepage())
                 .id(movieDetailResponse.getId())
                 .imdbId(movieDetailResponse.getImdb_id())
@@ -105,12 +110,12 @@ public class MovieDetailResponse {
                 .overview(movieDetailResponse.getOverview())
                 .popularity(movieDetailResponse.getPopularity())
                 .posterPath(movieDetailResponse.getPoster_path())
-                .productionCompanies(movieDetailResponse.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList()))
-                .productionCountries(movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList()))
+                .productionCompanies(movieProductionCompanies)
+                .productionCountries(movieProductionCountries)
                 .release_date(movieDetailResponse.getRelease_date())
                 .revenue(movieDetailResponse.getRevenue())
                 .runtime(movieDetailResponse.getRuntime())
-                .spokenLanguages(movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList()))
+                .spokenLanguages(movieSpokenLanguages)
                 .status(movieDetailResponse.getStatus())
                 .tagline(movieDetailResponse.getTagline())
                 .title(movieDetailResponse.getTitle())

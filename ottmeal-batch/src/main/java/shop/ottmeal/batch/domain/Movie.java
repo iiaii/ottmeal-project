@@ -3,7 +3,9 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import shop.ottmeal.batch.module.movie.job.trending.dto.response.*;
 
 import javax.persistence.*;
@@ -100,5 +102,22 @@ public class Movie {
         this.video = video;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
+
+        if (!CollectionUtils.isEmpty(genres)) {
+            genres.stream()
+                    .forEach(genre -> genre.setMovie(this));
+        }
+        if (!CollectionUtils.isEmpty(productionCompanies)) {
+            productionCompanies.stream()
+                    .forEach(productionCompany -> productionCompany.setMovie(this));
+        }
+        if (!CollectionUtils.isEmpty(productionCountries)) {
+            productionCountries.stream()
+                    .forEach(productionCountry -> productionCountry.setMovie(this));
+        }
+        if (!CollectionUtils.isEmpty(spokenLanguages)) {
+            spokenLanguages.stream()
+                    .forEach(spokenLanguage -> spokenLanguage.setMovie(this));
+        }
     }
 }
