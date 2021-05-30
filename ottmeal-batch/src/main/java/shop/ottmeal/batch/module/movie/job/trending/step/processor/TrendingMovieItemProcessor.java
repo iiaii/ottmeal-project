@@ -1,7 +1,5 @@
 package shop.ottmeal.batch.module.movie.job.trending.step.processor;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
