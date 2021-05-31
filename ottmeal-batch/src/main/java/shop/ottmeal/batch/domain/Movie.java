@@ -98,22 +98,22 @@ public class Movie {
         this.video = video;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
-
-        if (!CollectionUtils.isEmpty(genres)) {
-            genres.stream()
-                    .forEach(genre -> genre.setMovie(this));
-        }
-        if (!CollectionUtils.isEmpty(productionCompanies)) {
-            productionCompanies.stream()
-                    .forEach(productionCompany -> productionCompany.setMovie(this));
-        }
-        if (!CollectionUtils.isEmpty(productionCountries)) {
-            productionCountries.stream()
-                    .forEach(productionCountry -> productionCountry.setMovie(this));
-        }
-        if (!CollectionUtils.isEmpty(spokenLanguages)) {
-            spokenLanguages.stream()
-                    .forEach(spokenLanguage -> spokenLanguage.setMovie(this));
-        }
+//
+//        if (!CollectionUtils.isEmpty(genres)) {
+//            genres.stream()
+//                    .forEach(genre -> genre.setMovie(this));
+//        }
+//        if (!CollectionUtils.isEmpty(productionCompanies)) {
+//            productionCompanies.stream()
+//                    .forEach(productionCompany -> productionCompany.setMovie(this));
+//        }
+//        if (!CollectionUtils.isEmpty(productionCountries)) {
+//            productionCountries.stream()
+//                    .forEach(productionCountry -> productionCountry.setMovie(this));
+//        }
+//        if (!CollectionUtils.isEmpty(spokenLanguages)) {
+//            spokenLanguages.stream()
+//                    .forEach(spokenLanguage -> spokenLanguage.setMovie(this));
+//        }
     }
 }
