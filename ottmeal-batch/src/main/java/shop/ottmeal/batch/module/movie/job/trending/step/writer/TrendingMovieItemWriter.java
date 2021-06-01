@@ -20,10 +20,10 @@ public class TrendingMovieItemWriter implements ItemWriter<Movie> {
     public void write(List<? extends Movie> movies) throws Exception {
         movies.stream()
                 .forEach(movie -> {
-//                    movie.getGenres().stream().forEach(movieGenreRepository::save);
-//                    movie.getProductionCompanies().stream().forEach(movieProductionCompanyRepository::save);
-//                    movie.getProductionCountries().stream().forEach(movieProductionCountryRepository::save);
-//                    movie.getSpokenLanguages().stream().forEach(movieSpokenLanguageRepository::save);
+                    movie.getGenres().stream().forEach(movieGenreRepository::save);
+                    movie.getProductionCompanies().stream().forEach(movieProductionCompanyRepository::save);
+                    movie.getProductionCountries().stream().forEach(movieProductionCountryRepository::save);
+                    movie.getSpokenLanguages().stream().forEach(movieSpokenLanguageRepository::save);
                     movieRepository.save(movie);
                 });
 

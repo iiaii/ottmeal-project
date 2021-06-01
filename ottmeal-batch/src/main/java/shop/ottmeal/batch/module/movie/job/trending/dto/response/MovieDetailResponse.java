@@ -97,7 +97,7 @@ public class MovieDetailResponse {
         List<MovieProductionCountry> movieProductionCountries = movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList());
         List<MovieSpokenLanguage> movieSpokenLanguages = movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList());
 
-        return Movie.builder()
+        Movie movie = Movie.builder()
                 .adult(movieDetailResponse.isAdult())
                 .backdropPath(movieDetailResponse.getBackdrop_path())
                 .budget(movieDetailResponse.getBudget())
@@ -123,5 +123,16 @@ public class MovieDetailResponse {
                 .voteAverage(movieDetailResponse.getVote_average())
                 .voteCount(movieDetailResponse.getVote_count())
                 .build();
+
+        movieGenres.stream()
+                .forEach(genre -> genre.setMovie(movie));
+        movieProductionCompanies.stream()
+                .forEach(productionCompany -> productionCompany.setMovie(movie));
+        movieProductionCountries.stream()
+                .forEach(productionCountry -> productionCountry.setMovie(movie));
+        movieSpokenLanguages.stream()
+                .forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
+
+        return movie;
     }
 }

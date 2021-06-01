@@ -3,6 +3,7 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.List;
 public class Movie {
 
     @Id @GeneratedValue
-    @Column(name = "movie_idx")
     private Long idx;
 
     private boolean adult;
@@ -96,22 +96,5 @@ public class Movie {
         this.video = video;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
-
-//        if (!CollectionUtils.isEmpty(genres)) {
-//            genres.stream()
-//                    .forEach(genre -> genre.setMovie(this));
-//        }
-//        if (!CollectionUtils.isEmpty(productionCompanies)) {
-//            productionCompanies.stream()
-//                    .forEach(productionCompany -> productionCompany.setMovie(this));
-//        }
-//        if (!CollectionUtils.isEmpty(productionCountries)) {
-//            productionCountries.stream()
-//                    .forEach(productionCountry -> productionCountry.setMovie(this));
-//        }
-//        if (!CollectionUtils.isEmpty(spokenLanguages)) {
-//            spokenLanguages.stream()
-//                    .forEach(spokenLanguage -> spokenLanguage.setMovie(this));
-//        }
     }
 }

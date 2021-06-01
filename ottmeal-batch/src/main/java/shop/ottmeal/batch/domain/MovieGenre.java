@@ -30,4 +30,6 @@ public class MovieGenre {
         this.id = id;
         this.name = name;
     }
+
+
 }
