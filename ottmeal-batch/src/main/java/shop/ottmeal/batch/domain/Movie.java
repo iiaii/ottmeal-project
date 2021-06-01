@@ -3,10 +3,8 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,7 +24,7 @@ public class Movie {
     private int budget;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieGenre> genres = new ArrayList<>();
+    private List<MovieGenre> genres;
 
     private String homepage;
 
@@ -46,10 +44,10 @@ public class Movie {
     private String posterPath;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieProductionCompany> productionCompanies = new ArrayList<>();
+    private List<MovieProductionCompany> productionCompanies;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieProductionCountry> productionCountries = new ArrayList<>();
+    private List<MovieProductionCountry> productionCountries;
 
     private String release_date;
 
@@ -58,7 +56,7 @@ public class Movie {
     private Integer runtime;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieSpokenLanguage> spokenLanguages = new ArrayList<>();
+    private List<MovieSpokenLanguage> spokenLanguages;
 
     private String status;
 
@@ -98,7 +96,7 @@ public class Movie {
         this.video = video;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
-//
+
 //        if (!CollectionUtils.isEmpty(genres)) {
 //            genres.stream()
 //                    .forEach(genre -> genre.setMovie(this));
