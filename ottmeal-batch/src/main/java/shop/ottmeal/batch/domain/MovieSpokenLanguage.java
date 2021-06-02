@@ -22,7 +22,7 @@ public class MovieSpokenLanguage {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_idx", insertable = false, updatable = false)
+    @JoinColumn(name = "movie_idx")
     private Movie movie;
 
     @Builder

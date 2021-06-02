@@ -26,11 +26,12 @@ public class MovieProductionCompany {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_idx", insertable = false, updatable = false)
+    @JoinColumn(name = "movie_idx")
     private Movie movie;
 
     @Builder
-    public MovieProductionCompany(Long id, String logoPath, String name, String originCountry) {
+    public MovieProductionCompany(Long idx, Long id, String logoPath, String name, String originCountry) {
+        this.idx = idx;
         this.id = id;
         this.logoPath = logoPath;
         this.name = name;

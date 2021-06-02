@@ -22,14 +22,14 @@ public class MovieGenre {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_idx", insertable = false, updatable = false)
+    @JoinColumn(name = "movie_idx")
     private Movie movie;
 
     @Builder
-    public MovieGenre(Long id, String name) {
+    public MovieGenre(Long idx, Long id, String name) {
+        this.idx = idx;
         this.id = id;
         this.name = name;
     }
-
 
 }

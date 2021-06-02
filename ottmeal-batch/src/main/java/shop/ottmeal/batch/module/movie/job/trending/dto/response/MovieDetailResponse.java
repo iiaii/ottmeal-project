@@ -124,14 +124,10 @@ public class MovieDetailResponse {
                 .voteCount(movieDetailResponse.getVote_count())
                 .build();
 
-        movieGenres.stream()
-                .forEach(genre -> genre.setMovie(movie));
-        movieProductionCompanies.stream()
-                .forEach(productionCompany -> productionCompany.setMovie(movie));
-        movieProductionCountries.stream()
-                .forEach(productionCountry -> productionCountry.setMovie(movie));
-        movieSpokenLanguages.stream()
-                .forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
+        movie.getGenres().stream().forEach(genre -> genre.setMovie(movie));
+        movie.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setMovie(movie));
+        movie.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setMovie(movie));
+        movie.getSpokenLanguages().stream().forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
 
         return movie;
     }
