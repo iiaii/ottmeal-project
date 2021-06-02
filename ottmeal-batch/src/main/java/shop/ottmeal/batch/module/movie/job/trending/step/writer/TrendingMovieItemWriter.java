@@ -18,14 +18,14 @@ public class TrendingMovieItemWriter implements ItemWriter<Movie> {
 
     @Override
     public void write(List<? extends Movie> movies) throws Exception {
-        movies.stream()
-                .forEach(movie -> {
-                    movieRepository.save(movie);
-//                    movieGenreRepository.saveAll(movie.getGenres());
-//                    movieProductionCompanyRepository.saveAll(movie.getProductionCompanies());
-//                    movieProductionCountryRepository.saveAll(movie.getProductionCountries());
-//                    movieSpokenLanguageRepository.saveAll(movie.getSpokenLanguages());
-                });
+        movies.stream().forEach(this::saveAll);
+    }
 
+    private void saveAll(Movie movie) {
+        movieRepository.save(movie);
+        movieGenreRepository.saveAll(movie.getGenres());
+        movieProductionCompanyRepository.saveAll(movie.getProductionCompanies());
+        movieProductionCountryRepository.saveAll(movie.getProductionCountries());
+        movieSpokenLanguageRepository.saveAll(movie.getSpokenLanguages());
     }
 }

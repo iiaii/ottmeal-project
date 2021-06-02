@@ -26,8 +26,7 @@ public class MovieProductionCountry {
     private Movie movie;
 
     @Builder
-    public MovieProductionCountry(Long idx, String iso_3166_1, String name) {
-        this.idx = idx;
+    public MovieProductionCountry(String iso_3166_1, String name) {
         this.iso_3166_1 = iso_3166_1;
         this.name = name;
     }

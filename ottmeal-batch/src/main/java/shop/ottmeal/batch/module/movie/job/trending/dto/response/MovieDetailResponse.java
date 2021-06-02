@@ -91,37 +91,32 @@ public class MovieDetailResponse {
     @JsonProperty("vote_count")
     private int vote_count;
 
-    public static Movie toEntity(MovieDetailResponse movieDetailResponse) {
-        List<MovieGenre> movieGenres = movieDetailResponse.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList());
-        List<MovieProductionCompany> movieProductionCompanies = movieDetailResponse.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList());
-        List<MovieProductionCountry> movieProductionCountries = movieDetailResponse.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList());
-        List<MovieSpokenLanguage> movieSpokenLanguages = movieDetailResponse.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList());
-
+    public static Movie toEntity(MovieDetailResponse movieDetail) {
         Movie movie = Movie.builder()
-                .adult(movieDetailResponse.isAdult())
-                .backdropPath(movieDetailResponse.getBackdrop_path())
-                .budget(movieDetailResponse.getBudget())
-                .genres(movieGenres)
-                .homepage(movieDetailResponse.getHomepage())
-                .id(movieDetailResponse.getId())
-                .imdbId(movieDetailResponse.getImdb_id())
-                .originalLanguage(movieDetailResponse.getOriginal_language())
-                .originalTitle(movieDetailResponse.getOriginal_title())
-                .overview(movieDetailResponse.getOverview())
-                .popularity(movieDetailResponse.getPopularity())
-                .posterPath(movieDetailResponse.getPoster_path())
-                .productionCompanies(movieProductionCompanies)
-                .productionCountries(movieProductionCountries)
-                .release_date(movieDetailResponse.getRelease_date())
-                .revenue(movieDetailResponse.getRevenue())
-                .runtime(movieDetailResponse.getRuntime())
-                .spokenLanguages(movieSpokenLanguages)
-                .status(movieDetailResponse.getStatus())
-                .tagline(movieDetailResponse.getTagline())
-                .title(movieDetailResponse.getTitle())
-                .video(movieDetailResponse.isVideo())
-                .voteAverage(movieDetailResponse.getVote_average())
-                .voteCount(movieDetailResponse.getVote_count())
+                .adult(movieDetail.isAdult())
+                .backdropPath(movieDetail.getBackdrop_path())
+                .budget(movieDetail.getBudget())
+                .genres(movieDetail.getGenres().stream().map(MovieGenreResponse::toEntity).collect(Collectors.toList()))
+                .homepage(movieDetail.getHomepage())
+                .id(movieDetail.getId())
+                .imdbId(movieDetail.getImdb_id())
+                .originalLanguage(movieDetail.getOriginal_language())
+                .originalTitle(movieDetail.getOriginal_title())
+                .overview(movieDetail.getOverview())
+                .popularity(movieDetail.getPopularity())
+                .posterPath(movieDetail.getPoster_path())
+                .productionCompanies(movieDetail.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList()))
+                .productionCountries(movieDetail.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList()))
+                .release_date(movieDetail.getRelease_date())
+                .revenue(movieDetail.getRevenue())
+                .runtime(movieDetail.getRuntime())
+                .spokenLanguages(movieDetail.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList()))
+                .status(movieDetail.getStatus())
+                .tagline(movieDetail.getTagline())
+                .title(movieDetail.getTitle())
+                .video(movieDetail.isVideo())
+                .voteAverage(movieDetail.getVote_average())
+                .voteCount(movieDetail.getVote_count())
                 .build();
 
         movie.getGenres().stream().forEach(genre -> genre.setMovie(movie));

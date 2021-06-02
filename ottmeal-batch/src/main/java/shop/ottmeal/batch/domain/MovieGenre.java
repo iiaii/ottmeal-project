@@ -26,8 +26,7 @@ public class MovieGenre {
     private Movie movie;
 
     @Builder
-    public MovieGenre(Long idx, Long id, String name) {
-        this.idx = idx;
+    public MovieGenre(Long id, String name) {
         this.id = id;
         this.name = name;
     }

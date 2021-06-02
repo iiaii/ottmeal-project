@@ -30,8 +30,7 @@ public class MovieProductionCompany {
     private Movie movie;
 
     @Builder
-    public MovieProductionCompany(Long idx, Long id, String logoPath, String name, String originCountry) {
-        this.idx = idx;
+    public MovieProductionCompany(Long id, String logoPath, String name, String originCountry) {
         this.id = id;
         this.logoPath = logoPath;
         this.name = name;
