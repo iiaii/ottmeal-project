@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.trending.step.writer;
+package shop.ottmeal.batch.module.trending.job.movie.step.writer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemWriter;

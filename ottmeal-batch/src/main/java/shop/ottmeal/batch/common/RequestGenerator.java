@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import shop.ottmeal.batch.common.enums.MediaType;
 import shop.ottmeal.batch.common.enums.TimeWindow;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.MovieDetailResponse;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResponse;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.MovieDetailResponse;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
 
 @RequiredArgsConstructor
 public class RequestGenerator {

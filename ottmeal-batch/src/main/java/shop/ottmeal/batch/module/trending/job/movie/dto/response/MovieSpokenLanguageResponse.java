@@ -1,27 +1,27 @@
-package shop.ottmeal.batch.module.movie.job.trending.dto.response;
+package shop.ottmeal.batch.module.trending.job.movie.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.ottmeal.batch.domain.MovieGenre;
+import shop.ottmeal.batch.domain.MovieSpokenLanguage;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieGenreResponse {
+public class MovieSpokenLanguageResponse {
 
-    @JsonProperty("id")
-    private Long id;
+    @JsonProperty("iso_639_1")
+    private String iso_639_1;
 
     @JsonProperty("name")
     private String name;
 
-    public MovieGenre toEntity() {
-        return MovieGenre.builder()
-                .id(this.id)
+    public MovieSpokenLanguage toEntity() {
+        return MovieSpokenLanguage.builder()
+                .iso_639_1(this.iso_639_1)
                 .name(this.name)
                 .build();
     }

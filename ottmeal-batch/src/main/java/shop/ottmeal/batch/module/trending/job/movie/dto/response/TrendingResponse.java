@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.trending.dto.response;
+package shop.ottmeal.batch.module.trending.job.movie.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

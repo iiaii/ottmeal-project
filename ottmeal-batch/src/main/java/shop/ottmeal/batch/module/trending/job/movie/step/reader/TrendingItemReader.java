@@ -1,15 +1,13 @@
-package shop.ottmeal.batch.module.movie.job.trending.step.reader;
+package shop.ottmeal.batch.module.trending.job.movie.step.reader;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.BaseResponse;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.BaseResponse;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 
 public class TrendingItemReader <Response extends BaseResponse> implements ItemReader<TrendingResult> {
 

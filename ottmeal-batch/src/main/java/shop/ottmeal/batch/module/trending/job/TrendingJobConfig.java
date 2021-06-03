@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.trending;
+package shop.ottmeal.batch.module.trending.job;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import shop.ottmeal.batch.module.movie.job.trending.step.TrendingMovieStepConfig;
+import shop.ottmeal.batch.module.trending.job.movie.step.TrendingMovieStepConfig;
 
 @Slf4j
 @Configuration

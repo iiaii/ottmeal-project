@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.trending.dto.response;
+package shop.ottmeal.batch.module.trending.job.movie.dto.response;
 
 import lombok.Getter;
 

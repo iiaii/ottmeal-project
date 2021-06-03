@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.movie.job.trending.step;
+package shop.ottmeal.batch.module.trending.job.movie.step;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +12,10 @@ import shop.ottmeal.batch.common.RequestGenerator;
 import shop.ottmeal.batch.common.enums.MediaType;
 import shop.ottmeal.batch.common.enums.TimeWindow;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.movie.job.trending.dto.response.TrendingResult;
-import shop.ottmeal.batch.module.movie.job.trending.step.processor.TrendingMovieItemProcessor;
-import shop.ottmeal.batch.module.movie.job.trending.step.reader.TrendingItemReader;
-import shop.ottmeal.batch.module.movie.job.trending.step.writer.TrendingMovieItemWriter;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.movie.step.processor.TrendingMovieItemProcessor;
+import shop.ottmeal.batch.module.trending.job.movie.step.reader.TrendingItemReader;
+import shop.ottmeal.batch.module.trending.job.movie.step.writer.TrendingMovieItemWriter;
 import shop.ottmeal.batch.repository.*;
 
 @Slf4j

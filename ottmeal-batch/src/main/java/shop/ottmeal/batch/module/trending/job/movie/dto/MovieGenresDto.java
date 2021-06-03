@@ -1,19 +1,22 @@
-package shop.ottmeal.batch.module.movie.job.trending.dto;
+package shop.ottmeal.batch.module.trending.job.movie.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
 
 @Getter
 @Setter
 @Builder
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductionCountry {
+public class MovieGenresDto {
 
-    private final String iso_3166_1;
+    @JsonProperty("id")
+    private final Long id;
+
+    @JsonProperty("name")
     private final String name;
 }
