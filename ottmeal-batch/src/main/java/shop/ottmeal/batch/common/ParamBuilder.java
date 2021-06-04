@@ -2,18 +2,29 @@ package shop.ottmeal.batch.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import shop.ottmeal.batch.common.enums.Param;
 
 @Getter
-@RequiredArgsConstructor
 public class ParamBuilder {
 
     private final StringBuilder sb;
 
-    public static ParamBuilder builder() {
-        return new ParamBuilder(new StringBuilder("?"));
+    private ParamBuilder() {
+        sb = new StringBuilder();
     }
 
-    public StringBuilder add(String key, String value) {
-        sb.append(key, )
+    public static ParamBuilder builder() {
+        return new ParamBuilder();
+    }
+
+    public StringBuilder add(Param param, String value) {
+        return sb.append(sb.length() < 0 ? "?" : "&")
+                .append(param.getKeyName())
+                .append("=")
+                .append(value);
+    }
+
+    public String build() {
+        return sb.toString();
     }
 }
