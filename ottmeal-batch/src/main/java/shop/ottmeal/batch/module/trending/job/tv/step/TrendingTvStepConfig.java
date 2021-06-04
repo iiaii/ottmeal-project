@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.trending.job.movie.step;
+package shop.ottmeal.batch.module.trending.job.tv.step;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ import shop.ottmeal.batch.repository.*;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class TrendingMovieStepConfig {
-    public static final String STEP_NAME = "trendingMovieStep";
+public class TrendingTvStepConfig {
+    public static final String STEP_NAME = "trendingTvStep";
 
     private final RestTemplate restTemplate;
     private final StepBuilderFactory stepBuilderFactory;
@@ -35,17 +35,17 @@ public class TrendingMovieStepConfig {
 
     @Bean
     // @StepScope
-    public TrendingMovieItemReader trendingMovieReader() {
-        return new TrendingMovieItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Movie, TimeWindow.Day));
+    public TrendingMovieItemReader trendingTvReader() {
+        return new TrendingMovieItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Tv, TimeWindow.Day));
     }
 
     @Bean
-    public TrendingMovieItemProcessor trendingMovieProcessor() {
+    public TrendingMovieItemProcessor trendingTvProcessor() {
         return new TrendingMovieItemProcessor(restTemplate);
     }
 
     @Bean
-    public TrendingMovieItemWriter trendingMovieWriter() {
+    public TrendingMovieItemWriter trendingTvWriter() {
         return new TrendingMovieItemWriter(movieRepository, movieGenreRepository, movieProductionCompanyRepository, movieProductionCountryRepository, movieSpokenLanguageRepository);
     }
 
@@ -53,10 +53,10 @@ public class TrendingMovieStepConfig {
     public Step step() {
         return stepBuilderFactory.get(STEP_NAME)
                 .transactionManager(transactionManager)
-                .<TrendingResult, Movie>chunk(10)
-                .reader(trendingMovieReader())
-                .processor(trendingMovieProcessor())
-                .writer(trendingMovieWriter())
+                .<TrendingResult, Movie>chunk(20)
+                .reader(trendingTvReader())
+                .processor(trendingTvProcessor())
+                .writer(trendingTvWriter())
                 .faultTolerant()
                 .retryLimit(0)
                 .build();

@@ -7,20 +7,22 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.BaseResponse;
+import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 
-public class TrendingItemReader <Response extends BaseResponse> implements ItemReader<TrendingResult> {
+public class TrendingMovieItemReader implements ItemReader<TrendingResult> {
 
     private int index;
+    private int page;
     private RestTemplate restTemplate;
-    private Request<Response> request;
-    private Response response;
+    private Request<TrendingResponse> request;
+    private TrendingResponse response;
 
-    public TrendingItemReader(RestTemplate restTemplate, Request<Response> request) {
+    public TrendingMovieItemReader(RestTemplate restTemplate, Request<TrendingResponse> request) {
+        this.response = request();
         this.index = 0;
         this.restTemplate = restTemplate;
         this.request = request;
-        this.response = request();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class TrendingItemReader <Response extends BaseResponse> implements ItemR
         return (TrendingResult) response.getResults().get(index++);
     }
 
-    private Response request() {
+    private TrendingResponse request() {
         return restTemplate.exchange(request.getUrl(), request.getHttpMethod(), null, request.getResponseType())
                 .getBody();
     }
