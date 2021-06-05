@@ -3,6 +3,7 @@ package shop.ottmeal.batch.common;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import shop.ottmeal.batch.common.enums.MediaType;
+import shop.ottmeal.batch.common.enums.Param;
 import shop.ottmeal.batch.common.enums.TimeWindow;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
@@ -26,6 +27,10 @@ public class RequestGenerator {
      * @return
      */
     public static Request<TrendingResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
+        ParamBuilder.builder()
+                .addParam(Param.API_KEY, apiKey)
+                .addParam(Param.PAGE, 1)
+
         return Request.<TrendingResponse>builder()
                 .url(TMDB_BASE_URL + "/trending" + mediaType.getResource() + timeWindow.getResource() + apiKey)
                 .httpMethod(HttpMethod.GET)
