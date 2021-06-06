@@ -18,6 +18,10 @@ public class Params {
         return new Params();
     }
 
+    public String getParam(Param param) {
+        return params.get(param);
+    }
+
     public Params addParam(Param param, String value) {
         params.put(param, value);
         return this;

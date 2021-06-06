@@ -6,6 +6,7 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
+import shop.ottmeal.batch.common.enums.Param;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.BaseResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
@@ -13,13 +14,14 @@ import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 public class TrendingMovieItemReader implements ItemReader<TrendingResult> {
 
     private int index;
-    private int page;
-    private RestTemplate restTemplate;
-    private Request<TrendingResponse> request;
     private TrendingResponse response;
+    private final int totalPages;
+    private final RestTemplate restTemplate;
+    private final Request<TrendingResponse> request;
 
     public TrendingMovieItemReader(RestTemplate restTemplate, Request<TrendingResponse> request) {
         this.response = request();
+        this.totalPages = response.getTotal_pages();
         this.index = 0;
         this.restTemplate = restTemplate;
         this.request = request;
@@ -32,7 +34,13 @@ public class TrendingMovieItemReader implements ItemReader<TrendingResult> {
                 : response;
 
         if (response.getResults().size() <= index) {
-            return null;
+            int page = Integer.parseInt(request.getParams().getParam(Param.PAGE));
+            if (totalPages > page) {
+                request.getParams().addValueIfNumber(Param.PAGE);
+                response = request();
+            } else {
+                return null;
+            }
         }
 
         return (TrendingResult) response.getResults().get(index++);

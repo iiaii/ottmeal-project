@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 public class Request <T> {
 
     private final String url;
+
+    @Getter
     private final Params params;
 
     @Getter
