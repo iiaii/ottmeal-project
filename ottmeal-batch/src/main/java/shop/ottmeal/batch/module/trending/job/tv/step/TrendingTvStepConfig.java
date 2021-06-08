@@ -14,7 +14,7 @@ import shop.ottmeal.batch.common.enums.TimeWindow;
 import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 import shop.ottmeal.batch.module.trending.job.movie.step.processor.TrendingMovieItemProcessor;
-import shop.ottmeal.batch.module.trending.job.movie.step.reader.TrendingItemReader;
+import shop.ottmeal.batch.module.trending.job.common.TrendingItemReader;
 import shop.ottmeal.batch.module.trending.job.movie.step.writer.TrendingMovieItemWriter;
 import shop.ottmeal.batch.repository.*;
 

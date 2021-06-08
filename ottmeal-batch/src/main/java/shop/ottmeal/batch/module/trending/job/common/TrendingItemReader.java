@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.trending.job.movie.step.reader;
+package shop.ottmeal.batch.module.trending.job.common;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
