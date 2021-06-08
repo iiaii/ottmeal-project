@@ -7,11 +7,10 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.common.enums.Param;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.BaseResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 
-public class TrendingMovieItemReader implements ItemReader<TrendingResult> {
+public class TrendingItemReader implements ItemReader<TrendingResult> {
 
     private int index;
     private TrendingResponse response;
@@ -19,7 +18,7 @@ public class TrendingMovieItemReader implements ItemReader<TrendingResult> {
     private final RestTemplate restTemplate;
     private final Request<TrendingResponse> request;
 
-    public TrendingMovieItemReader(RestTemplate restTemplate, Request<TrendingResponse> request) {
+    public TrendingItemReader(RestTemplate restTemplate, Request<TrendingResponse> request) {
         this.response = request();
         this.totalPages = response.getTotal_pages();
         this.index = 0;
