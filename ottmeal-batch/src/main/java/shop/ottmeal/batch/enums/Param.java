@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.common.enums;
+package shop.ottmeal.batch.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,6 @@
 package shop.ottmeal.batch.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,4 +26,15 @@ public class Season {
     private String overview;
     private String posterPath;
     private int seasonNumber;
+
+    @Builder
+    public Season(LocalDateTime airDate, Integer episodeCount, Long id, String name, String overview, String posterPath, int seasonNumber) {
+        this.airDate = airDate;
+        this.episodeCount = episodeCount;
+        this.id = id;
+        this.name = name;
+        this.overview = overview;
+        this.posterPath = posterPath;
+        this.seasonNumber = seasonNumber;
+    }
 }

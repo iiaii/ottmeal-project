@@ -6,7 +6,7 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
-import shop.ottmeal.batch.common.enums.Param;
+import shop.ottmeal.batch.enums.Param;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
 

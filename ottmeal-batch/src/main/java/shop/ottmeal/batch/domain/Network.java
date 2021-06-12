@@ -1,5 +1,6 @@
 package shop.ottmeal.batch.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,4 +18,11 @@ public class Network {
     private String name;
     private String logoPath;
     private String originCountry;
+
+    @Builder
+    public Network(String name, String logoPath, String originCountry) {
+        this.name = name;
+        this.logoPath = logoPath;
+        this.originCountry = originCountry;
+    }
 }

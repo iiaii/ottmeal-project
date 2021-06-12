@@ -1,5 +1,6 @@
 package shop.ottmeal.batch.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,4 +28,18 @@ public class LastEpisodeToAir {
     private String stillPath;
     private Double voteAverage;
     private int voteCount;
+
+    @Builder
+    public LastEpisodeToAir(LocalDateTime airDate, int episodeNumber, Long id, String name, String overview, String productionCode, int seasonNumber, String stillPath, Double voteAverage, int voteCount) {
+        this.airDate = airDate;
+        this.episodeNumber = episodeNumber;
+        this.id = id;
+        this.name = name;
+        this.overview = overview;
+        this.productionCode = productionCode;
+        this.seasonNumber = seasonNumber;
+        this.stillPath = stillPath;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+    }
 }

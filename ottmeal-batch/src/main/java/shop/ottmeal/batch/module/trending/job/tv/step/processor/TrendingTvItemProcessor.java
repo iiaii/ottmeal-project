@@ -4,7 +4,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.common.RequestGenerator;
-import shop.ottmeal.batch.common.enums.MediaType;
+import shop.ottmeal.batch.enums.MediaType;
 import shop.ottmeal.batch.domain.Movie;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;

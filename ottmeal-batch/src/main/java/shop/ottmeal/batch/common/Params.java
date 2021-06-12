@@ -1,6 +1,6 @@
 package shop.ottmeal.batch.common;
 
-import shop.ottmeal.batch.common.enums.Param;
+import shop.ottmeal.batch.enums.Param;
 
 import java.util.HashMap;
 import java.util.Map;
