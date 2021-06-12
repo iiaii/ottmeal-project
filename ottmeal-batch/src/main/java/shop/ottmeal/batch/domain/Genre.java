@@ -1,7 +1,34 @@
 package shop.ottmeal.batch.domain;
 
-public enum Genre {
-    ACTION,
-    DRAMA
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Getter
+@NoArgsConstructor
+@Entity
+public class Genre {
+
+    @Id
+    @GeneratedValue
+    private Long idx;
+
+    private Long id;
+
+    private String name;
+
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_idx")
+    private Movie movie;
+
+    @Builder
+    public Genre(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
 }

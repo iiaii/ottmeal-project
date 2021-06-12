@@ -10,13 +10,15 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class MovieGenre {
+public class SpokenLanguage {
 
     @Id
     @GeneratedValue
     private Long idx;
 
-    private Long id;
+    private String englishName;
+
+    private String iso_639_1;
 
     private String name;
 
@@ -26,9 +28,9 @@ public class MovieGenre {
     private Movie movie;
 
     @Builder
-    public MovieGenre(Long id, String name) {
-        this.id = id;
+    public SpokenLanguage(String englishName, String iso_639_1, String name) {
+        this.englishName = englishName;
+        this.iso_639_1 = iso_639_1;
         this.name = name;
     }
-
 }

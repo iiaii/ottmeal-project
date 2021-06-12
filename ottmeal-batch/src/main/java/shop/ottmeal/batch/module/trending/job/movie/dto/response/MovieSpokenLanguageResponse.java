@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.ottmeal.batch.domain.MovieSpokenLanguage;
+import shop.ottmeal.batch.domain.SpokenLanguage;
 
 @Getter
 @Setter
@@ -19,8 +19,8 @@ public class MovieSpokenLanguageResponse {
     @JsonProperty("name")
     private String name;
 
-    public MovieSpokenLanguage toEntity() {
-        return MovieSpokenLanguage.builder()
+    public SpokenLanguage toEntity() {
+        return SpokenLanguage.builder()
                 .iso_639_1(this.iso_639_1)
                 .name(this.name)
                 .build();

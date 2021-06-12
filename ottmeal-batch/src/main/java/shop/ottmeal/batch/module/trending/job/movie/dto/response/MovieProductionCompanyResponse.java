@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.ottmeal.batch.domain.MovieProductionCompany;
+import shop.ottmeal.batch.domain.ProductionCompany;
 
 @Getter
 @Setter
@@ -25,8 +25,8 @@ public class MovieProductionCompanyResponse {
     @JsonProperty("origin_country")
     private String origin_country;
 
-    public MovieProductionCompany toEntity() {
-        return MovieProductionCompany.builder()
+    public ProductionCompany toEntity() {
+        return ProductionCompany.builder()
                 .id(this.id)
                 .logoPath(this.logo_path)
                 .name(this.name)

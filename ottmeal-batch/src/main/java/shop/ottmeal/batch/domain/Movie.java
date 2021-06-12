@@ -3,7 +3,6 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,14 +16,14 @@ public class Movie {
     @Id @GeneratedValue
     private Long idx;
 
-    private boolean adult;
+    private Boolean adult;
 
     private String backdropPath;
 
-    private int budget;
+    private Integer budget;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieGenre> genres;
+    private List<Genre> genres;
 
     private String homepage;
 
@@ -44,19 +43,19 @@ public class Movie {
     private String posterPath;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieProductionCompany> productionCompanies;
+    private List<ProductionCompany> productionCompanies;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieProductionCountry> productionCountries;
+    private List<ProductionCountry> productionCountries;
 
     private String release_date;
 
-    private int revenue;
+    private Integer revenue;
 
     private Integer runtime;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<MovieSpokenLanguage> spokenLanguages;
+    private List<SpokenLanguage> spokenLanguages;
 
     private String status;
 
@@ -64,14 +63,14 @@ public class Movie {
 
     private String title;
 
-    private boolean video;
+    private Boolean video;
 
     private Double voteAverage;
 
-    private int voteCount;
+    private Integer voteCount;
 
     @Builder
-    public Movie(boolean adult, String backdropPath, int budget, List<MovieGenre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<MovieProductionCompany> productionCompanies, List<MovieProductionCountry> productionCountries, String release_date, int revenue, Integer runtime, List<MovieSpokenLanguage> spokenLanguages, String status, String tagline, String title, boolean video, Double voteAverage, int voteCount) {
+    public Movie(Boolean adult, String backdropPath, Integer budget, List<Genre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, String release_date, Integer revenue, Integer runtime, List<SpokenLanguage> spokenLanguages, String status, String tagline, String title, Boolean video, Double voteAverage, Integer voteCount) {
         this.adult = adult;
         this.backdropPath = backdropPath;
         this.budget = budget;

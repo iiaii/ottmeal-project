@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class MovieProductionCountry {
+public class ProductionCountry {
 
     @Id
     @GeneratedValue
@@ -26,7 +26,7 @@ public class MovieProductionCountry {
     private Movie movie;
 
     @Builder
-    public MovieProductionCountry(String iso_3166_1, String name) {
+    public ProductionCountry(String iso_3166_1, String name) {
         this.iso_3166_1 = iso_3166_1;
         this.name = name;
     }

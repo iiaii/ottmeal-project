@@ -10,15 +10,19 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class MovieSpokenLanguage {
+public class ProductionCompany {
 
     @Id
     @GeneratedValue
     private Long idx;
 
-    private String iso_639_1;
+    private Long id;
+
+    private String logoPath;
 
     private String name;
+
+    private String originCountry;
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,8 +30,10 @@ public class MovieSpokenLanguage {
     private Movie movie;
 
     @Builder
-    public MovieSpokenLanguage(String iso_639_1, String name) {
-        this.iso_639_1 = iso_639_1;
+    public ProductionCompany(Long id, String logoPath, String name, String originCountry) {
+        this.id = id;
+        this.logoPath = logoPath;
         this.name = name;
+        this.originCountry = originCountry;
     }
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.ottmeal.batch.domain.MovieGenre;
+import shop.ottmeal.batch.domain.Genre;
 
 @Getter
 @Setter
@@ -19,8 +19,8 @@ public class MovieGenreResponse {
     @JsonProperty("name")
     private String name;
 
-    public MovieGenre toEntity() {
-        return MovieGenre.builder()
+    public Genre toEntity() {
+        return Genre.builder()
                 .id(this.id)
                 .name(this.name)
                 .build();
