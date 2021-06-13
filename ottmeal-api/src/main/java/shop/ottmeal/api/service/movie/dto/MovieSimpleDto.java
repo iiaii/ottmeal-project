@@ -1,7 +1,5 @@
 package shop.ottmeal.api.service.movie.dto;
 
-import com.sun.istack.NotNull;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import shop.ottmeal.api.domain.Movie;

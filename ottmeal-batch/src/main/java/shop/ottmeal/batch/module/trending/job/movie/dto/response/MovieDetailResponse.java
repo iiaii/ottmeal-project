@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.batch.common.TimeUtils;
 import shop.ottmeal.batch.domain.*;
 
 import java.util.List;
@@ -107,7 +108,7 @@ public class MovieDetailResponse {
                 .posterPath(movieDetail.getPoster_path())
                 .productionCompanies(movieDetail.getProduction_companies().stream().map(MovieProductionCompanyResponse::toEntity).collect(Collectors.toList()))
                 .productionCountries(movieDetail.getProduction_countries().stream().map(MovieProductionCountryResponse::toEntity).collect(Collectors.toList()))
-                .release_date(movieDetail.getRelease_date())
+                .releaseDate(TimeUtils.convertFromYyyyMmDd(movieDetail.getRelease_date()))
                 .revenue(movieDetail.getRevenue())
                 .runtime(movieDetail.getRuntime())
                 .spokenLanguages(movieDetail.getSpoken_languages().stream().map(MovieSpokenLanguageResponse::toEntity).collect(Collectors.toList()))

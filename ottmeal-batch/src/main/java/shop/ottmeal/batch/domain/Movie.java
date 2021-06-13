@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -48,7 +49,7 @@ public class Movie {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
     private List<ProductionCountry> productionCountries;
 
-    private String release_date;
+    private LocalDateTime releaseDate;
 
     private Integer revenue;
 
@@ -70,7 +71,7 @@ public class Movie {
     private Integer voteCount;
 
     @Builder
-    public Movie(Boolean adult, String backdropPath, Integer budget, List<Genre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, String release_date, Integer revenue, Integer runtime, List<SpokenLanguage> spokenLanguages, String status, String tagline, String title, Boolean video, Double voteAverage, Integer voteCount) {
+    public Movie(Boolean adult, String backdropPath, Integer budget, List<Genre> genres, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, LocalDateTime releaseDate, Integer revenue, Integer runtime, List<SpokenLanguage> spokenLanguages, String status, String tagline, String title, Boolean video, Double voteAverage, Integer voteCount) {
         this.adult = adult;
         this.backdropPath = backdropPath;
         this.budget = budget;
@@ -85,7 +86,7 @@ public class Movie {
         this.posterPath = posterPath;
         this.productionCompanies = productionCompanies;
         this.productionCountries = productionCountries;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.revenue = revenue;
         this.runtime = runtime;
         this.spokenLanguages = spokenLanguages;
