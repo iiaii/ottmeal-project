@@ -15,26 +15,35 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public class BaseMovie extends BaseEntity {
+public class BaseTv extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     protected Long idx;
-
-    protected Boolean adult;
 
     protected String backdropPath;
 
-    protected Integer budget;
+    protected LocalDateTime firstAirDate;
 
     protected String homepage;
 
     protected Long id;
 
-    protected String imdbId;
+    protected Boolean inProduction;
+
+    protected LocalDateTime lastAirDate;
+
+    protected String name;
+
+    protected String nextEpisodeToAir;
+
+    protected Integer numberOfEpisodes;
+
+    protected Integer numberOfSeasons;
 
     protected String originalLanguage;
 
-    protected String originalTitle;
+    protected String originalName;
 
     @Lob
     protected String overview;
@@ -43,21 +52,14 @@ public class BaseMovie extends BaseEntity {
 
     protected String posterPath;
 
-    protected LocalDateTime releaseDate;
-
-    protected Integer revenue;
-
-    protected Integer runtime;
-
     protected String status;
 
     protected String tagline;
 
-    protected String title;
-
-    protected Boolean video;
+    protected String type;
 
     protected Double voteAverage;
 
     protected Integer voteCount;
+
 }
