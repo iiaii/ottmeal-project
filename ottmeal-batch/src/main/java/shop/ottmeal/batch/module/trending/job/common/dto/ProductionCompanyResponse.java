@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.trending.job.movie.dto.response;
+package shop.ottmeal.batch.module.trending.job.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import shop.ottmeal.batch.domain.ProductionCompany;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieProductionCompanyResponse {
+public class ProductionCompanyResponse {
 
     @JsonProperty("id")
     private Long id;

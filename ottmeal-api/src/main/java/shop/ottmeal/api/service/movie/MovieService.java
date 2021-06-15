@@ -23,7 +23,6 @@ public class MovieService {
 
         return MovieSimpleDto.builder()
                 .title(movie.getTitle())
-                .adult(movie.isAdult())
                 .createdTime(movie.getCreatedTime())
                 .build();
     }

@@ -1,4 +1,4 @@
-package shop.ottmeal.batch.module.trending.job.movie.dto.response;
+package shop.ottmeal.batch.module.trending.job.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrendingResponse extends BaseResponse {
+public class TrendingResponse {
 
     @JsonProperty("page")
     private Integer page;

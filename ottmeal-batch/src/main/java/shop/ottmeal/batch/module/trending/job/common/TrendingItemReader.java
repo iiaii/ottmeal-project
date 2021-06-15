@@ -7,8 +7,8 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.enums.Param;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResponse;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResponse;
+import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResult;
 
 public class TrendingItemReader implements ItemReader<TrendingResult> {
 

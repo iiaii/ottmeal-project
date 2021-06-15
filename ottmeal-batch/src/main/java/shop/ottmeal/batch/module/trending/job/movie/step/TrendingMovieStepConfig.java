@@ -12,7 +12,7 @@ import shop.ottmeal.batch.common.RequestGenerator;
 import shop.ottmeal.batch.enums.MediaType;
 import shop.ottmeal.batch.enums.TimeWindow;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResult;
 import shop.ottmeal.batch.module.trending.job.movie.step.processor.TrendingMovieItemProcessor;
 import shop.ottmeal.batch.module.trending.job.common.TrendingItemReader;
 import shop.ottmeal.batch.module.trending.job.movie.step.writer.TrendingMovieItemWriter;
@@ -34,7 +34,6 @@ public class TrendingMovieStepConfig {
     private final MovieSpokenLanguageRepository movieSpokenLanguageRepository;
 
     @Bean
-    // @StepScope
     public TrendingItemReader trendingMovieReader() {
         return new TrendingItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Movie, TimeWindow.Day));
     }

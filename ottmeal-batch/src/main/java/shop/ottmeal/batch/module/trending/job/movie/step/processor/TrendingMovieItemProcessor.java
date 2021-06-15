@@ -6,8 +6,8 @@ import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.common.RequestGenerator;
 import shop.ottmeal.batch.enums.MediaType;
 import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.MovieDetailResponse;
-import shop.ottmeal.batch.module.trending.job.movie.dto.response.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
+import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResult;
 
 public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult, Movie> {
 
