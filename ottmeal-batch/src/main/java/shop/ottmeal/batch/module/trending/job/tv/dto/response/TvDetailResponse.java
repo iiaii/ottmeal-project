@@ -23,11 +23,13 @@ import java.util.stream.Collectors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TvDetailResponse {
 
-    @JsonProperty("backdropPath")
+    @JsonProperty("backdrop_path")
     private String backdrop_path;
 
+    @JsonProperty("first_air_date")
     private LocalDateTime first_air_date;
 
+    @JsonProperty("homepage")
     private String homepage;
 
     private Long id;
@@ -121,10 +123,14 @@ public class TvDetailResponse {
                 .spokenLanguages(tvDetailResponse.getSpoken_languages())
                 .build();
 
-//        movie.getGenres().stream().forEach(genre -> genre.setMovie(movie));
-//        movie.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setMovie(movie));
-//        movie.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setMovie(movie));
-//        movie.getSpokenLanguages().stream().forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
+        tv.getCreatedBy().stream().forEach(createdBy -> createdBy.setTv(tv));
+        tv.getGenres().stream().forEach(genre -> genre.setTv(tv));
+        tv.getLastEpisodeToAir().setTv(tv);
+        tv.getNetworks().stream().forEach(network -> network.setTv(tv));
+        tv.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setTv(tv));
+        tv.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setTv(tv));
+        tv.getSeasons().stream().forEach(season -> season.setTv(tv));
+        tv.getSpokenLanguages().stream().forEach(spokenLanguage -> spokenLanguage.setTv(tv));
 
         return tv;
     }

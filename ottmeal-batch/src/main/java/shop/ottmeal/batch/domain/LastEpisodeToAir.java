@@ -3,11 +3,9 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -28,6 +26,11 @@ public class LastEpisodeToAir {
     private String stillPath;
     private Double voteAverage;
     private int voteCount;
+
+    @Setter
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
 
     @Builder
     public LastEpisodeToAir(LocalDateTime airDate, int episodeNumber, Long id, String name, String overview, String productionCode, int seasonNumber, String stillPath, Double voteAverage, int voteCount) {

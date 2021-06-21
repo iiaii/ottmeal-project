@@ -25,6 +25,11 @@ public class ProductionCountry {
     @JoinColumn(name = "movie_idx")
     private Movie movie;
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
+
     @Builder
     public ProductionCountry(String iso_3166_1, String name) {
         this.iso_3166_1 = iso_3166_1;

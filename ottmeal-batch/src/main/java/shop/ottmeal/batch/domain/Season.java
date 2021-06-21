@@ -3,11 +3,9 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,6 +24,11 @@ public class Season {
     private String overview;
     private String posterPath;
     private int seasonNumber;
+
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
 
     @Builder
     public Season(LocalDateTime airDate, Integer episodeCount, Long id, String name, String overview, String posterPath, int seasonNumber) {

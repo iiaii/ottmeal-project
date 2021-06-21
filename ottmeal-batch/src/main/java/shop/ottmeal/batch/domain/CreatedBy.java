@@ -3,10 +3,9 @@ package shop.ottmeal.batch.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -22,6 +21,11 @@ public class CreatedBy {
     private Integer gender;
     private String profilePath;
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
+
     @Builder
     public CreatedBy(Long id, String creditId, String name, int gender, String profilePath) {
         this.id = id;
@@ -30,4 +34,6 @@ public class CreatedBy {
         this.gender = gender;
         this.profilePath = profilePath;
     }
+
+
 }

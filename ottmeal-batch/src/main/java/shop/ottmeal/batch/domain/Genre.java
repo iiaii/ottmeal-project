@@ -25,6 +25,11 @@ public class Genre {
     @JoinColumn(name = "movie_idx")
     private Movie movie;
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
+
     @Builder
     public Genre(Long id, String name) {
         this.id = id;

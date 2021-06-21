@@ -29,6 +29,11 @@ public class ProductionCompany {
     @JoinColumn(name = "movie_idx")
     private Movie movie;
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tv_idx")
+    private Tv tv;
+
     @Builder
     public ProductionCompany(Long id, String logoPath, String name, String originCountry) {
         this.id = id;

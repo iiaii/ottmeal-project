@@ -26,6 +26,7 @@ public class Tv extends BaseTv {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<String> languages;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tv")
     private LastEpisodeToAir lastEpisodeToAir;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
