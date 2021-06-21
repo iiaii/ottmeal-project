@@ -6,16 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.ottmeal.batch.common.TimeUtils;
-import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.domain.Tv;
+import shop.ottmeal.batch.domain.*;
 import shop.ottmeal.batch.module.trending.job.common.dto.GenreResponse;
 import shop.ottmeal.batch.module.trending.job.common.dto.ProductionCompanyResponse;
 import shop.ottmeal.batch.module.trending.job.common.dto.ProductionCountryResponse;
 import shop.ottmeal.batch.module.trending.job.common.dto.SpokenLanguageResponse;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,82 +23,109 @@ import java.util.stream.Collectors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TvDetailResponse {
 
-    @JsonProperty("adult")
-    protected Long idx;
+    @JsonProperty("backdropPath")
+    private String backdrop_path;
 
-    protected String backdropPath;
+    private LocalDateTime first_air_date;
 
-    protected LocalDateTime firstAirDate;
+    private String homepage;
 
-    protected String homepage;
+    private Long id;
 
-    protected Long id;
+    private Boolean in_production;
 
-    protected Boolean inProduction;
+    private LocalDateTime last_air_date;
 
-    protected LocalDateTime lastAirDate;
+    private String name;
 
-    protected String name;
+    private String next_episode_to_air;
 
-    protected String nextEpisodeToAir;
+    private Integer number_of_episodes;
 
-    protected Integer numberOfEpisodes;
+    private Integer number_of_seasons;
 
-    protected Integer numberOfSeasons;
+    private String original_language;
 
-    protected String originalLanguage;
+    private String original_name;
 
-    protected String originalName;
+    private String overview;
 
-    @Lob
-    protected String overview;
+    private Double popularity;
 
-    protected Double popularity;
+    private String poster_path;
 
-    protected String posterPath;
+    private String status;
 
-    protected String status;
+    private String tagline;
 
-    protected String tagline;
+    private String type;
 
-    protected String type;
+    private Double vote_average;
 
-    protected Double voteAverage;
+    private Integer vote_count;
 
-    protected Integer voteCount;
+    private List<CreatedBy> created_by;
+
+    private List<Integer> episode_run_time;
+
+    private List<Genre> genres;
+
+    private List<String> languages;
+
+    private LastEpisodeToAir last_episode_to_air;
+
+    private List<Network> networks;
+
+    private List<String> origin_country;
+
+    private List<ProductionCompany> production_companies;
+
+    private List<ProductionCountry> production_countries;
+
+    private List<Season> seasons;
+
+    private List<SpokenLanguage> spoken_languages;
 
     public static Tv toEntity(TvDetailResponse tvDetailResponse) {
-         Tv.builder()
+        Tv tv = Tv.builder()
                 .backdropPath(tvDetailResponse.getBackdrop_path())
-                .budget(tvDetailResponse.getBudget())
-                .genres(tvDetailResponse.getGenres().stream().map(GenreResponse::toEntity).collect(Collectors.toList()))
+                .firstAirDate(tvDetailResponse.getFirst_air_date())
                 .homepage(tvDetailResponse.getHomepage())
                 .id(tvDetailResponse.getId())
-                .imdbId(tvDetailResponse.getImdb_id())
+                .inProduction(tvDetailResponse.getIn_production())
+                .lastAirDate(tvDetailResponse.getLast_air_date())
+                .name(tvDetailResponse.getName())
+                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air())
+                .numberOfEpisodes(tvDetailResponse.getNumber_of_episodes())
+                .numberOfSeasons(tvDetailResponse.getNumber_of_seasons())
                 .originalLanguage(tvDetailResponse.getOriginal_language())
-                .originalTitle(tvDetailResponse.getOriginal_title())
+                .originalName(tvDetailResponse.getOriginal_name())
                 .overview(tvDetailResponse.getOverview())
                 .popularity(tvDetailResponse.getPopularity())
                 .posterPath(tvDetailResponse.getPoster_path())
-                .productionCompanies(tvDetailResponse.getProduction_companies().stream().map(ProductionCompanyResponse::toEntity).collect(Collectors.toList()))
-                .productionCountries(tvDetailResponse.getProduction_countries().stream().map(ProductionCountryResponse::toEntity).collect(Collectors.toList()))
-                .releaseDate(TimeUtils.convertFromYyyyMmDd(tvDetailResponse.getRelease_date()))
-                .revenue(tvDetailResponse.getRevenue())
-                .runtime(tvDetailResponse.getRuntime())
-                .spokenLanguages(tvDetailResponse.getSpoken_languages().stream().map(SpokenLanguageResponse::toEntity).collect(Collectors.toList()))
                 .status(tvDetailResponse.getStatus())
                 .tagline(tvDetailResponse.getTagline())
-                .title(tvDetailResponse.getTitle())
-                .video(tvDetailResponse.isVideo())
+                .type(tvDetailResponse.getType())
                 .voteAverage(tvDetailResponse.getVote_average())
                 .voteCount(tvDetailResponse.getVote_count())
+                .createdBy(tvDetailResponse.getCreated_by())
+                .episodeRunTime(tvDetailResponse.getEpisode_run_time())
+                .genres(tvDetailResponse.getGenres())
+                .languages(tvDetailResponse.getLanguages())
+                .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air())
+                .networks(tvDetailResponse.getNetworks())
+                .originCountry(tvDetailResponse.getOrigin_country())
+                .productionCompanies(tvDetailResponse.getProduction_companies())
+                .productionCountries(tvDetailResponse.getProduction_countries())
+                .seasons(tvDetailResponse.getSeasons())
+                .spokenLanguages(tvDetailResponse.getSpoken_languages())
                 .build();
 
-        movie.getGenres().stream().forEach(genre -> genre.setMovie(movie));
-        movie.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setMovie(movie));
-        movie.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setMovie(movie));
-        movie.getSpokenLanguages().stream().forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
+//        movie.getGenres().stream().forEach(genre -> genre.setMovie(movie));
+//        movie.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setMovie(movie));
+//        movie.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setMovie(movie));
+//        movie.getSpokenLanguages().stream().forEach(spokenLanguage -> spokenLanguage.setMovie(movie));
 
-        return movie;
+        return tv;
     }
 }
