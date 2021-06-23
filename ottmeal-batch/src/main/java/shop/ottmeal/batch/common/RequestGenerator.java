@@ -7,6 +7,7 @@ import shop.ottmeal.batch.enums.Param;
 import shop.ottmeal.batch.enums.TimeWindow;
 import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResponse;
+import shop.ottmeal.batch.module.trending.job.tv.dto.response.TvDetailResponse;
 
 @RequiredArgsConstructor
 public class RequestGenerator {
@@ -40,12 +41,21 @@ public class RequestGenerator {
     /**
      * Movie 디테일 Request 생성
      *
-     * @param mediaType
      * @param mediaId
      * @return
      */
-    public static Request<MovieDetailResponse> getMovieDetailRequest(MediaType mediaType, Long mediaId) {
-        return getMediaDetailRequest(mediaType, mediaId, MovieDetailResponse.class);
+    public static Request<MovieDetailResponse> getMovieDetailRequest(Long mediaId) {
+        return getMediaDetailRequest(MediaType.Movie, mediaId, MovieDetailResponse.class);
+    }
+
+    /**
+     * Tv 디테일 Request 생성
+     *
+     * @param mediaId
+     * @return
+     */
+    public static Request<TvDetailResponse> getTvDetailRequest(Long mediaId) {
+        return getMediaDetailRequest(MediaType.Tv, mediaId, TvDetailResponse.class);
     }
 
     /**

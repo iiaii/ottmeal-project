@@ -23,7 +23,7 @@ public class TrendingMovieItemProcessor implements ItemProcessor<TrendingResult,
     }
 
     private MovieDetailResponse request(Long id) {
-        Request<MovieDetailResponse> request = RequestGenerator.getMovieDetailRequest(MediaType.Movie, id);
+        Request<MovieDetailResponse> request = RequestGenerator.getMovieDetailRequest(id);
         return restTemplate.exchange(request.getUrl(), request.getHttpMethod(), null, request.getResponseType())
                 .getBody();
     }

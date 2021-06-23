@@ -4,12 +4,11 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.web.client.RestTemplate;
 import shop.ottmeal.batch.common.Request;
 import shop.ottmeal.batch.common.RequestGenerator;
-import shop.ottmeal.batch.enums.MediaType;
-import shop.ottmeal.batch.domain.Movie;
-import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
+import shop.ottmeal.batch.domain.Tv;
 import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResult;
+import shop.ottmeal.batch.module.trending.job.tv.dto.response.TvDetailResponse;
 
-public class TrendingTvItemProcessor implements ItemProcessor<TrendingResult, Movie> {
+public class TrendingTvItemProcessor implements ItemProcessor<TrendingResult, Tv> {
 
     private RestTemplate restTemplate;
 
@@ -18,12 +17,12 @@ public class TrendingTvItemProcessor implements ItemProcessor<TrendingResult, Mo
     }
 
     @Override
-    public Movie process(TrendingResult item) throws Exception {
-        return MovieDetailResponse.toEntity(request(item.getId()));
+    public Tv process(TrendingResult item) throws Exception {
+        return TvDetailResponse.toEntity(request(item.getId()));
     }
 
-    private MovieDetailResponse request(Long id) {
-        Request<MovieDetailResponse> request = RequestGenerator.getMovieDetailRequest(MediaType.Tv, id);
+    private TvDetailResponse request(Long id) {
+        Request<TvDetailResponse> request = RequestGenerator.getTvDetailRequest(id);
         return restTemplate.exchange(request.getUrl(), request.getHttpMethod(), null, request.getResponseType())
                 .getBody();
     }
