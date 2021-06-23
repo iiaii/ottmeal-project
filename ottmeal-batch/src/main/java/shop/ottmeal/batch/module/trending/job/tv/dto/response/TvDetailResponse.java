@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.ottmeal.batch.common.TimeUtils;
 import shop.ottmeal.batch.domain.*;
-import shop.ottmeal.batch.module.trending.job.common.dto.GenreResponse;
-import shop.ottmeal.batch.module.trending.job.common.dto.ProductionCompanyResponse;
-import shop.ottmeal.batch.module.trending.job.common.dto.ProductionCountryResponse;
-import shop.ottmeal.batch.module.trending.job.common.dto.SpokenLanguageResponse;
+import shop.ottmeal.batch.module.trending.job.common.dto.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -66,27 +63,27 @@ public class TvDetailResponse {
 
     private Integer vote_count;
 
-    private List<CreatedBy> created_by;
+    private List<CreatedByResponse> created_by;
 
     private List<Integer> episode_run_time;
 
-    private List<Genre> genres;
+    private List<GenreResponse> genres;
 
     private List<String> languages;
 
-    private LastEpisodeToAir last_episode_to_air;
+    private LastEpisodeToAirResponse last_episode_to_air;
 
-    private List<Network> networks;
+    private List<NetworkResponse> networks;
 
     private List<String> origin_country;
 
-    private List<ProductionCompany> production_companies;
+    private List<ProductionCompanyResponse> production_companies;
 
-    private List<ProductionCountry> production_countries;
+    private List<ProductionCountryResponse> production_countries;
 
-    private List<Season> seasons;
+    private List<SeasonResponse> seasons;
 
-    private List<SpokenLanguage> spoken_languages;
+    private List<SpokenLanguageResponse> spoken_languages;
 
     public static Tv toEntity(TvDetailResponse tvDetailResponse) {
         Tv tv = Tv.builder()
@@ -110,17 +107,17 @@ public class TvDetailResponse {
                 .type(tvDetailResponse.getType())
                 .voteAverage(tvDetailResponse.getVote_average())
                 .voteCount(tvDetailResponse.getVote_count())
-                .createdBy(tvDetailResponse.getCreated_by())
+                .createdBy(tvDetailResponse.getCreated_by().stream().map(CreatedByResponse::toEntity).collect(Collectors.toList()))
                 .episodeRunTime(tvDetailResponse.getEpisode_run_time())
-                .genres(tvDetailResponse.getGenres())
+                .genres(tvDetailResponse.getGenres().stream().map(GenreResponse::toEntity).collect(Collectors.toList()))
                 .languages(tvDetailResponse.getLanguages())
-                .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air())
-                .networks(tvDetailResponse.getNetworks())
+                .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air().toEntity())
+                .networks(tvDetailResponse.getNetworks().stream().map(NetworkResponse::toEntity).collect(Collectors.toList()))
                 .originCountry(tvDetailResponse.getOrigin_country())
-                .productionCompanies(tvDetailResponse.getProduction_companies())
-                .productionCountries(tvDetailResponse.getProduction_countries())
-                .seasons(tvDetailResponse.getSeasons())
-                .spokenLanguages(tvDetailResponse.getSpoken_languages())
+                .productionCompanies(tvDetailResponse.getProduction_companies().stream().map(ProductionCompanyResponse::toEntity).collect(Collectors.toList()))
+                .productionCountries(tvDetailResponse.getProduction_countries().stream().map(ProductionCountryResponse::toEntity).collect(Collectors.toList()))
+                .seasons(tvDetailResponse.getSeasons().stream().map(SeasonResponse::toEntity).collect(Collectors.toList()))
+                .spokenLanguages(tvDetailResponse.getSpoken_languages().stream().map(SpokenLanguageResponse::toEntity).collect(Collectors.toList()))
                 .build();
 
         tv.getCreatedBy().stream().forEach(createdBy -> createdBy.setTv(tv));
