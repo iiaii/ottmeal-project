@@ -5,8 +5,8 @@ import org.springframework.http.HttpMethod;
 import shop.ottmeal.batch.enums.MediaType;
 import shop.ottmeal.batch.enums.Param;
 import shop.ottmeal.batch.enums.TimeWindow;
-import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResponse;
+import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.tv.dto.response.TvDetailResponse;
 
 @RequiredArgsConstructor
