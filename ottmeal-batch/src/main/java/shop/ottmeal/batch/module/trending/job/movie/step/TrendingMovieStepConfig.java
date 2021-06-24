@@ -28,10 +28,10 @@ public class TrendingMovieStepConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final PlatformTransactionManager transactionManager;
     private final MovieRepository movieRepository;
-    private final MovieGenreRepository movieGenreRepository;
-    private final MovieProductionCompanyRepository movieProductionCompanyRepository;
-    private final MovieProductionCountryRepository movieProductionCountryRepository;
-    private final MovieSpokenLanguageRepository movieSpokenLanguageRepository;
+    private final GenreRepository genreRepository;
+    private final ProductionCompanyRepository productionCompanyRepository;
+    private final ProductionCountryRepository productionCountryRepository;
+    private final SpokenLanguageRepository spokenLanguageRepository;
 
     @Bean
     public TrendingItemReader trendingMovieReader() {
@@ -45,7 +45,7 @@ public class TrendingMovieStepConfig {
 
     @Bean
     public TrendingMovieItemWriter trendingMovieWriter() {
-        return new TrendingMovieItemWriter(movieRepository, movieGenreRepository, movieProductionCompanyRepository, movieProductionCountryRepository, movieSpokenLanguageRepository);
+        return new TrendingMovieItemWriter(movieRepository, genreRepository, productionCompanyRepository, productionCountryRepository, spokenLanguageRepository);
     }
 
     @Bean(name = STEP_NAME)

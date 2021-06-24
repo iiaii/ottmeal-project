@@ -11,10 +11,10 @@ import java.util.List;
 public class TrendingMovieItemWriter implements ItemWriter<Movie> {
 
     private final MovieRepository movieRepository;
-    private final MovieGenreRepository movieGenreRepository;
-    private final MovieProductionCompanyRepository movieProductionCompanyRepository;
-    private final MovieProductionCountryRepository movieProductionCountryRepository;
-    private final MovieSpokenLanguageRepository movieSpokenLanguageRepository;
+    private final GenreRepository genreRepository;
+    private final ProductionCompanyRepository productionCompanyRepository;
+    private final ProductionCountryRepository productionCountryRepository;
+    private final SpokenLanguageRepository spokenLanguageRepository;
 
     @Override
     public void write(List<? extends Movie> movies) throws Exception {
@@ -23,9 +23,9 @@ public class TrendingMovieItemWriter implements ItemWriter<Movie> {
 
     private void saveAll(Movie movie) {
         movieRepository.save(movie);
-        movieGenreRepository.saveAll(movie.getGenres());
-        movieProductionCompanyRepository.saveAll(movie.getProductionCompanies());
-        movieProductionCountryRepository.saveAll(movie.getProductionCountries());
-        movieSpokenLanguageRepository.saveAll(movie.getSpokenLanguages());
+        genreRepository.saveAll(movie.getGenres());
+        productionCompanyRepository.saveAll(movie.getProductionCompanies());
+        productionCountryRepository.saveAll(movie.getProductionCountries());
+        spokenLanguageRepository.saveAll(movie.getSpokenLanguages());
     }
 }

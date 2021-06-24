@@ -18,6 +18,7 @@ public class Tv extends BaseTv {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<CreatedBy> createdBy;
 
+
     private List<Integer> episodeRunTime;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
