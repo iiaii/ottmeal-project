@@ -18,9 +18,6 @@ public class Tv extends BaseTv {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<CreatedBy> createdBy;
 
-
-    private List<Integer> episodeRunTime;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<Genre> genres;
 
@@ -33,8 +30,6 @@ public class Tv extends BaseTv {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<Network> networks;
 
-    private List<String> originCountry;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<ProductionCompany> productionCompanies;
 
@@ -46,6 +41,20 @@ public class Tv extends BaseTv {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<SpokenLanguage> spokenLanguages;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "tv_episode_run_time",
+            joinColumns = @JoinColumn(name = "tv_idx")
+    )
+    private List<Integer> episodeRunTime;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "tv_origin_country",
+            joinColumns = @JoinColumn(name = "tv_idx")
+    )
+    private List<String> originCountry;
 
     @Builder
     public Tv(Long idx, String backdropPath, LocalDateTime firstAirDate, String homepage, Long id, Boolean inProduction, LocalDateTime lastAirDate, String name, String nextEpisodeToAir, Integer numberOfEpisodes, Integer numberOfSeasons, String originalLanguage, String originalName, String overview, Double popularity, String posterPath, String status, String tagline, String type, Double voteAverage, Integer voteCount, List<CreatedBy> createdBy, List<Integer> episodeRunTime, List<Genre> genres, List<String> languages, LastEpisodeToAir lastEpisodeToAir, List<Network> networks, List<String> originCountry, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<Season> seasons, List<SpokenLanguage> spokenLanguages) {
