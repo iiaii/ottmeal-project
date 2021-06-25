@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import shop.ottmeal.batch.module.trending.job.movie.step.TrendingMovieStepConfig;
+import shop.ottmeal.batch.module.trending.job.tv.step.TrendingTvStepConfig;
 
 @Slf4j
 @Configuration
@@ -39,9 +40,11 @@ public class TrendingJobConfig {
 
     @Bean(JOB_NAME)
     public Job trendingJob(@Autowired JobBuilderFactory jobBuilderFactory,
-                              @Qualifier(TrendingMovieStepConfig.STEP_NAME) Step trendingMovieStep) {
+                           @Qualifier(TrendingMovieStepConfig.STEP_NAME) Step trendingMovieStep,
+                           @Qualifier(TrendingTvStepConfig.STEP_NAME) Step trendingTvStep) {
         return jobBuilderFactory.get(JOB_NAME)
                 .start(trendingMovieStep)
+                .next(trendingTvStep)
                 .build();
     }
 }

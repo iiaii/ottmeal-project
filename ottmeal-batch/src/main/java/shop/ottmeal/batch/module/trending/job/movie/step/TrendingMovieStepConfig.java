@@ -33,7 +33,7 @@ public class TrendingMovieStepConfig {
     private final ProductionCountryRepository productionCountryRepository;
     private final SpokenLanguageRepository spokenLanguageRepository;
 
-    @Bean
+    @Bean("trendingMovieReader")
     public TrendingItemReader trendingMovieReader() {
         return new TrendingItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Movie, TimeWindow.Day));
     }

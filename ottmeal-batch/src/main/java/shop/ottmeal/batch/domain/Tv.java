@@ -21,9 +21,6 @@ public class Tv extends BaseTv {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<Genre> genres;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
-    private List<String> languages;
-
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "tv")
     private LastEpisodeToAir lastEpisodeToAir;
 
@@ -41,6 +38,13 @@ public class Tv extends BaseTv {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<SpokenLanguage> spokenLanguages;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "tv_languages",
+            joinColumns = @JoinColumn(name = "tv_idx")
+    )
+    private List<String> languages;
 
     @ElementCollection
     @CollectionTable(

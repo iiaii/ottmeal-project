@@ -36,7 +36,7 @@ public class TrendingTvStepConfig {
     private final NetworkRepository networkRepository;
     private final SeasonRepository seasonRepository;
 
-    @Bean
+    @Bean("trendingTvReader")
     public TrendingItemReader trendingTvReader() {
         return new TrendingItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Tv, TimeWindow.Day));
     }
