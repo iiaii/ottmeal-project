@@ -1,6 +1,8 @@
 package shop.ottmeal.batch.common;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import shop.ottmeal.batch.enums.MediaType;
 import shop.ottmeal.batch.enums.Param;
@@ -9,12 +11,11 @@ import shop.ottmeal.batch.module.trending.job.common.dto.TrendingResponse;
 import shop.ottmeal.batch.module.trending.job.movie.dto.MovieDetailResponse;
 import shop.ottmeal.batch.module.trending.job.tv.dto.response.TvDetailResponse;
 
+@Configuration
 @RequiredArgsConstructor
 public class RequestGenerator {
 
-    private final static String TMDB_BASE_URL = "https://api.themoviedb.org/3";
-
-    private final static String apiKey = "0b1fe3786795a257dd0648d67445af97";
+    private final TmdbConfig tmdbConfig;
 
     /**
      * 트렌딩 미디어 리스트 Request 생성
@@ -27,11 +28,11 @@ public class RequestGenerator {
      * @param timeWindow
      * @return
      */
-    public static Request<TrendingResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
+    public Request<TrendingResponse> getTrendingRequest(MediaType mediaType, TimeWindow timeWindow) {
         return Request.<TrendingResponse>builder()
-                .url(TMDB_BASE_URL + "/trending" + mediaType.getResource() + timeWindow.getResource())
+                .url(tmdbConfig.getBaseUrl() + "/trending" + mediaType.getResource() + timeWindow.getResource())
                 .params(Params.builder()
-                        .addParam(Param.API_KEY, apiKey)
+                        .addParam(Param.API_KEY, tmdbConfig.getApiKey())
                         .addParam(Param.PAGE, 1))
                 .httpMethod(HttpMethod.GET)
                 .responseType(TrendingResponse.class)
@@ -44,7 +45,7 @@ public class RequestGenerator {
      * @param mediaId
      * @return
      */
-    public static Request<MovieDetailResponse> getMovieDetailRequest(Long mediaId) {
+    public Request<MovieDetailResponse> getMovieDetailRequest(Long mediaId) {
         return getMediaDetailRequest(MediaType.Movie, mediaId, MovieDetailResponse.class);
     }
 
@@ -54,7 +55,7 @@ public class RequestGenerator {
      * @param mediaId
      * @return
      */
-    public static Request<TvDetailResponse> getTvDetailRequest(Long mediaId) {
+    public Request<TvDetailResponse> getTvDetailRequest(Long mediaId) {
         return getMediaDetailRequest(MediaType.Tv, mediaId, TvDetailResponse.class);
     }
 
@@ -69,10 +70,12 @@ public class RequestGenerator {
      * @param mediaId
      * @return
      */
-    private static <T> Request<T> getMediaDetailRequest(MediaType mediaType, Long mediaId, Class<T> responseType) {
+    private <T> Request<T> getMediaDetailRequest(MediaType mediaType, Long mediaId, Class<T> responseType) {
         return Request.<T>builder()
-                .url(TMDB_BASE_URL + mediaType.getResource() + "/" + mediaId + apiKey + "&language=ko")
-                .params(Params.builder().addParam(Param.API_KEY, apiKey))
+                .url(tmdbConfig.getBaseUrl() + mediaType.getResource() + "/" + mediaId)
+                .params(Params.builder()
+                        .addParam(Param.API_KEY, tmdbConfig.getApiKey())
+                        .addParam(Param.LANGUAGE, "ko"))
                 .httpMethod(HttpMethod.GET)
                 .responseType(responseType)
                 .build();

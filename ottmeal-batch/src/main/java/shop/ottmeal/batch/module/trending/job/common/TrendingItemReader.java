@@ -19,11 +19,12 @@ public class TrendingItemReader implements ItemReader<TrendingResult> {
     private final Request<TrendingResponse> request;
 
     public TrendingItemReader(RestTemplate restTemplate, Request<TrendingResponse> request) {
-        this.response = request();
-        this.totalPages = response.getTotal_pages();
-        this.index = 0;
-        this.restTemplate = restTemplate;
         this.request = request;
+        this.restTemplate = restTemplate;
+        this.response = request();
+        this.index = 0;
+        this.totalPages = 2;
+//        this.totalPages = this.response.getTotal_pages();
     }
 
     @Override

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Param {
     API_KEY("api_key"),
+    LANGUAGE("language"),
     PAGE("page");
 
     private final String keyName;

@@ -24,6 +24,7 @@ import shop.ottmeal.batch.repository.*;
 public class TrendingTvStepConfig {
     public static final String STEP_NAME = "trendingTvStep";
 
+    private final RequestGenerator requestGenerator;
     private final RestTemplate restTemplate;
     private final StepBuilderFactory stepBuilderFactory;
     private final PlatformTransactionManager transactionManager;
@@ -38,12 +39,12 @@ public class TrendingTvStepConfig {
 
     @Bean("trendingTvReader")
     public TrendingItemReader trendingTvReader() {
-        return new TrendingItemReader(restTemplate, RequestGenerator.getTrendingRequest(MediaType.Tv, TimeWindow.Day));
+        return new TrendingItemReader(restTemplate, requestGenerator.getTrendingRequest(MediaType.Tv, TimeWindow.Day));
     }
 
     @Bean
     public TrendingTvItemProcessor trendingTvProcessor() {
-        return new TrendingTvItemProcessor(restTemplate);
+        return new TrendingTvItemProcessor(requestGenerator, restTemplate);
     }
 
     @Bean

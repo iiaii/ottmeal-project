@@ -48,7 +48,7 @@ public class Params {
     @Override
     public String toString() {
         return params.keySet().stream()
-                .map(key -> key + "=" + params.get(key))
+                .map(key -> key.getKeyName() + "=" + params.get(key))
                 .collect(Collectors.joining("&", "?", ""));
     }
 }
