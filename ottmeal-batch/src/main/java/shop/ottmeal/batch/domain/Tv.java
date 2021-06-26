@@ -22,7 +22,10 @@ public class Tv extends BaseTv {
     private List<Genre> genres;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "tv")
-    private LastEpisodeToAir lastEpisodeToAir;
+    protected EpisodeToAir nextEpisodeToAir;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tv")
+    private EpisodeToAir lastEpisodeToAir;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tv")
     private List<Network> networks;
@@ -61,12 +64,13 @@ public class Tv extends BaseTv {
     private List<String> originCountry;
 
     @Builder
-    public Tv(Long idx, String backdropPath, LocalDateTime firstAirDate, String homepage, Long id, Boolean inProduction, LocalDateTime lastAirDate, String name, String nextEpisodeToAir, Integer numberOfEpisodes, Integer numberOfSeasons, String originalLanguage, String originalName, String overview, Double popularity, String posterPath, String status, String tagline, String type, Double voteAverage, Integer voteCount, List<CreatedBy> createdBy, List<Integer> episodeRunTime, List<Genre> genres, List<String> languages, LastEpisodeToAir lastEpisodeToAir, List<Network> networks, List<String> originCountry, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<Season> seasons, List<SpokenLanguage> spokenLanguages) {
-        super(idx, backdropPath, firstAirDate, homepage, id, inProduction, lastAirDate, name, nextEpisodeToAir, numberOfEpisodes, numberOfSeasons, originalLanguage, originalName, overview, popularity, posterPath, status, tagline, type, voteAverage, voteCount);
+    public Tv(Long idx, String backdropPath, LocalDateTime firstAirDate, String homepage, Long id, Boolean inProduction, LocalDateTime lastAirDate, String name, Integer numberOfEpisodes, Integer numberOfSeasons, String originalLanguage, String originalName, String overview, Double popularity, String posterPath, String status, String tagline, String type, Double voteAverage, Long voteCount, List<CreatedBy> createdBy, List<Integer> episodeRunTime, List<Genre> genres, List<String> languages, EpisodeToAir nextEpisodeToAir, EpisodeToAir lastEpisodeToAir, List<Network> networks, List<String> originCountry, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<Season> seasons, List<SpokenLanguage> spokenLanguages) {
+        super(idx, backdropPath, firstAirDate, homepage, id, inProduction, lastAirDate, name, numberOfEpisodes, numberOfSeasons, originalLanguage, originalName, overview, popularity, posterPath, status, tagline, type, voteAverage, voteCount);
         this.createdBy = createdBy;
         this.episodeRunTime = episodeRunTime;
         this.genres = genres;
         this.languages = languages;
+        this.nextEpisodeToAir = nextEpisodeToAir;
         this.lastEpisodeToAir = lastEpisodeToAir;
         this.networks = networks;
         this.originCountry = originCountry;

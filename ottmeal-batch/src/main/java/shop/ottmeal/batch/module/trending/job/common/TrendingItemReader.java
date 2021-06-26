@@ -35,6 +35,7 @@ public class TrendingItemReader implements ItemReader<TrendingResult> {
 
         if (response.getResults().size() <= index) {
             int page = Integer.parseInt(request.getParams().getParam(Param.PAGE));
+            index = 0;
             if (totalPages > page) {
                 request.getParams().addValueIfNumber(Param.PAGE);
                 response = request();

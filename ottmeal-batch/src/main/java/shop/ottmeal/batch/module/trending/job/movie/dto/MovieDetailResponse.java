@@ -31,7 +31,7 @@ public class MovieDetailResponse {
 //    private Object belongs_to_collection;
 
     @JsonProperty("budget")
-    private int budget;
+    private Long budget;
 
     @JsonProperty("genres")
     private List<GenreResponse> genres;
@@ -70,7 +70,7 @@ public class MovieDetailResponse {
     private String release_date;
 
     @JsonProperty("revenue")
-    private int revenue;
+    private Long revenue;
 
     @JsonProperty("runtime")
     private Integer runtime;
@@ -94,7 +94,7 @@ public class MovieDetailResponse {
     private Double vote_average;
 
     @JsonProperty("vote_count")
-    private int vote_count;
+    private Long vote_count;
 
     public static Movie toEntity(MovieDetailResponse movieDetail) {
         Movie movie = Movie.builder()

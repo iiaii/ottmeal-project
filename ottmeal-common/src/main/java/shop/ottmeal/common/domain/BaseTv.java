@@ -35,8 +35,6 @@ public class BaseTv extends BaseEntity {
 
     protected String name;
 
-    protected String nextEpisodeToAir;
-
     protected Integer numberOfEpisodes;
 
     protected Integer numberOfSeasons;
@@ -60,6 +58,6 @@ public class BaseTv extends BaseEntity {
 
     protected Double voteAverage;
 
-    protected Integer voteCount;
+    protected Long voteCount;
 
 }

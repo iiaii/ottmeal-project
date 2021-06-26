@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import shop.ottmeal.batch.common.TimeUtils;
 import shop.ottmeal.batch.domain.Season;
 import shop.ottmeal.batch.domain.Tv;
 
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SeasonResponse {
 
-    private LocalDateTime airDate;
+    private String airDate;
     private Integer episodeCount;
     private Long id;
     private String name;
@@ -27,7 +29,7 @@ public class SeasonResponse {
 
     public Season toEntity() {
         return Season.builder()
-                .airDate(this.airDate)
+                .airDate(TimeUtils.convertFromYyyyMmDd(this.airDate))
                 .episodeCount(this.episodeCount)
                 .id(this.id)
                 .name(this.name)

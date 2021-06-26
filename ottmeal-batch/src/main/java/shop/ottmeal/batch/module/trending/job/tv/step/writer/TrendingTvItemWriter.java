@@ -5,9 +5,6 @@ import org.springframework.batch.item.ItemWriter;
 import shop.ottmeal.batch.domain.*;
 import shop.ottmeal.batch.repository.*;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,7 +30,7 @@ public class TrendingTvItemWriter implements ItemWriter<Tv> {
         productionCompanyRepository.saveAll(tv.getProductionCompanies());
         productionCountryRepository.saveAll(tv.getProductionCountries());
         spokenLanguageRepository.saveAll(tv.getSpokenLanguages());
-        lastEpisodeToAirRepository.save(tv.getLastEpisodeToAir());
+        lastEpisodeToAirRepository.save(tv.getEpisodeToAir());
         networkRepository.saveAll(tv.getNetworks());
         seasonRepository.saveAll(tv.getSeasons());
     }

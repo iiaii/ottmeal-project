@@ -9,8 +9,6 @@ import shop.ottmeal.batch.common.TimeUtils;
 import shop.ottmeal.batch.domain.*;
 import shop.ottmeal.batch.module.trending.job.common.dto.*;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +22,7 @@ public class TvDetailResponse {
     private String backdrop_path;
 
     @JsonProperty("first_air_date")
-    private LocalDateTime first_air_date;
+    private String first_air_date;
 
     @JsonProperty("homepage")
     private String homepage;
@@ -33,11 +31,9 @@ public class TvDetailResponse {
 
     private Boolean in_production;
 
-    private LocalDateTime last_air_date;
+    private String last_air_date;
 
     private String name;
-
-    private String next_episode_to_air;
 
     private Integer number_of_episodes;
 
@@ -61,7 +57,7 @@ public class TvDetailResponse {
 
     private Double vote_average;
 
-    private Integer vote_count;
+    private Long vote_count;
 
     private List<CreatedByResponse> created_by;
 
@@ -71,7 +67,9 @@ public class TvDetailResponse {
 
     private List<String> languages;
 
-    private LastEpisodeToAirResponse last_episode_to_air;
+    private EpisodeToAirResponse next_episode_to_air;
+
+    private EpisodeToAirResponse last_episode_to_air;
 
     private List<NetworkResponse> networks;
 
@@ -88,13 +86,12 @@ public class TvDetailResponse {
     public static Tv toEntity(TvDetailResponse tvDetailResponse) {
         Tv tv = Tv.builder()
                 .backdropPath(tvDetailResponse.getBackdrop_path())
-                .firstAirDate(tvDetailResponse.getFirst_air_date())
+                .firstAirDate(TimeUtils.convertFromYyyyMmDd(tvDetailResponse.getFirst_air_date()))
                 .homepage(tvDetailResponse.getHomepage())
                 .id(tvDetailResponse.getId())
                 .inProduction(tvDetailResponse.getIn_production())
-                .lastAirDate(tvDetailResponse.getLast_air_date())
+                .lastAirDate(TimeUtils.convertFromYyyyMmDd(tvDetailResponse.getLast_air_date()))
                 .name(tvDetailResponse.getName())
-                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air())
                 .numberOfEpisodes(tvDetailResponse.getNumber_of_episodes())
                 .numberOfSeasons(tvDetailResponse.getNumber_of_seasons())
                 .originalLanguage(tvDetailResponse.getOriginal_language())
@@ -111,6 +108,7 @@ public class TvDetailResponse {
                 .episodeRunTime(tvDetailResponse.getEpisode_run_time())
                 .genres(tvDetailResponse.getGenres().stream().map(GenreResponse::toEntity).collect(Collectors.toList()))
                 .languages(tvDetailResponse.getLanguages())
+                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air())
                 .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air().toEntity())
                 .networks(tvDetailResponse.getNetworks().stream().map(NetworkResponse::toEntity).collect(Collectors.toList()))
                 .originCountry(tvDetailResponse.getOrigin_country())
@@ -122,7 +120,7 @@ public class TvDetailResponse {
 
         tv.getCreatedBy().stream().forEach(createdBy -> createdBy.setTv(tv));
         tv.getGenres().stream().forEach(genre -> genre.setTv(tv));
-        tv.getLastEpisodeToAir().setTv(tv);
+        tv.getEpisodeToAir().setTv(tv);
         tv.getNetworks().stream().forEach(network -> network.setTv(tv));
         tv.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setTv(tv));
         tv.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setTv(tv));

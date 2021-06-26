@@ -13,18 +13,18 @@ import shop.ottmeal.batch.domain.CreatedBy;
 public class CreatedByResponse {
 
     private Long id;
-    private String creditId;
+    private String credit_id;
     private String name;
     private Integer gender;
-    private String profilePath;
+    private String profile_path;
 
     public CreatedBy toEntity() {
         return CreatedBy.builder()
                 .id(this.id)
-                .creditId(this.creditId)
+                .creditId(this.credit_id)
                 .name(this.name)
                 .gender(this.gender)
-                .profilePath(this.profilePath)
+                .profilePath(this.profile_path)
                 .build();
     }
 }

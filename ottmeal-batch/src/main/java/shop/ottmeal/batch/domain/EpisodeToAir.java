@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class LastEpisodeToAir {
+public class EpisodeToAir {
 
     @Id @GeneratedValue
     private Long idx;
@@ -33,7 +33,7 @@ public class LastEpisodeToAir {
     private Tv tv;
 
     @Builder
-    public LastEpisodeToAir(LocalDateTime airDate, int episodeNumber, Long id, String name, String overview, String productionCode, int seasonNumber, String stillPath, Double voteAverage, int voteCount) {
+    public EpisodeToAir(LocalDateTime airDate, int episodeNumber, Long id, String name, String overview, String productionCode, int seasonNumber, String stillPath, Double voteAverage, int voteCount) {
         this.airDate = airDate;
         this.episodeNumber = episodeNumber;
         this.id = id;

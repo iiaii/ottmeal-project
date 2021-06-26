@@ -24,7 +24,7 @@ public class BaseMovie extends BaseEntity {
 
     protected String backdropPath;
 
-    protected Integer budget;
+    protected Long budget;
 
     protected String homepage;
 
@@ -45,7 +45,7 @@ public class BaseMovie extends BaseEntity {
 
     protected LocalDateTime releaseDate;
 
-    protected Integer revenue;
+    protected Long revenue;
 
     protected Integer runtime;
 
@@ -59,5 +59,5 @@ public class BaseMovie extends BaseEntity {
 
     protected Double voteAverage;
 
-    protected Integer voteCount;
+    protected Long voteCount;
 }

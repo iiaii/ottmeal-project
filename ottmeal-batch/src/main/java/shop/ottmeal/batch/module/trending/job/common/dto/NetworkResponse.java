@@ -13,14 +13,14 @@ import shop.ottmeal.batch.domain.Network;
 public class NetworkResponse {
 
     private String name;
-    private String logoPath;
-    private String originCountry;
+    private String logo_path;
+    private String origin_country;
 
     public Network toEntity() {
         return Network.builder()
                 .name(this.name)
-                .logoPath(this.logoPath)
-                .originCountry(this.originCountry)
+                .logoPath(this.logo_path)
+                .originCountry(this.origin_country)
                 .build();
     }
 }

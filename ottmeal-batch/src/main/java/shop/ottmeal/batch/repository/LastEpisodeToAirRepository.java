@@ -1,8 +1,7 @@
 package shop.ottmeal.batch.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import shop.ottmeal.batch.domain.CreatedBy;
-import shop.ottmeal.batch.domain.LastEpisodeToAir;
+import shop.ottmeal.batch.domain.EpisodeToAir;
 
-public interface LastEpisodeToAirRepository extends JpaRepository<LastEpisodeToAir, Long> {
+public interface LastEpisodeToAirRepository extends JpaRepository<EpisodeToAir, Long> {
 }

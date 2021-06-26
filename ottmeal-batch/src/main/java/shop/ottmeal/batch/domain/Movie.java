@@ -28,7 +28,7 @@ public class Movie extends BaseMovie {
     private List<SpokenLanguage> spokenLanguages;
 
     @Builder
-    public Movie(Long idx, Boolean adult, String backdropPath, Integer budget, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, LocalDateTime releaseDate, Integer revenue, Integer runtime, String status, String tagline, String title, Boolean video, Double voteAverage, Integer voteCount, List<Genre> genres, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<SpokenLanguage> spokenLanguages) {
+    public Movie(Long idx, Boolean adult, String backdropPath, Long budget, String homepage, Long id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, LocalDateTime releaseDate, Long revenue, Integer runtime, String status, String tagline, String title, Boolean video, Double voteAverage, Long voteCount, List<Genre> genres, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<SpokenLanguage> spokenLanguages) {
         super(idx, adult, backdropPath, budget, homepage, id, imdbId, originalLanguage, originalTitle, overview, popularity, posterPath, releaseDate, revenue, runtime, status, tagline, title, video, voteAverage, voteCount);
         this.genres = genres;
         this.productionCompanies = productionCompanies;
