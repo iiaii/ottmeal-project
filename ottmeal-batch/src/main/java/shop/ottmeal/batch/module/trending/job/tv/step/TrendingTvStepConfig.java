@@ -33,7 +33,7 @@ public class TrendingTvStepConfig {
     private final ProductionCompanyRepository productionCompanyRepository;
     private final ProductionCountryRepository productionCountryRepository;
     private final SpokenLanguageRepository spokenLanguageRepository;
-    private final LastEpisodeToAirRepository lastEpisodeToAirRepository;
+    private final EpisodeToAirRepository episodeToAirRepository;
     private final NetworkRepository networkRepository;
     private final SeasonRepository seasonRepository;
 
@@ -50,7 +50,7 @@ public class TrendingTvStepConfig {
     @Bean
     public TrendingTvItemWriter trendingTvWriter() {
         return new TrendingTvItemWriter(tvRepository, genreRepository, productionCompanyRepository,
-                productionCountryRepository, spokenLanguageRepository, lastEpisodeToAirRepository, networkRepository, seasonRepository);
+                productionCountryRepository, spokenLanguageRepository, episodeToAirRepository, networkRepository, seasonRepository);
     }
 
     @Bean(name = STEP_NAME)

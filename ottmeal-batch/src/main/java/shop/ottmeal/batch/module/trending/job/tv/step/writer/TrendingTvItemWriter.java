@@ -15,7 +15,7 @@ public class TrendingTvItemWriter implements ItemWriter<Tv> {
     private final ProductionCompanyRepository productionCompanyRepository;
     private final ProductionCountryRepository productionCountryRepository;
     private final SpokenLanguageRepository spokenLanguageRepository;
-    private final LastEpisodeToAirRepository lastEpisodeToAirRepository;
+    private final EpisodeToAirRepository episodeToAirRepository;
     private final NetworkRepository networkRepository;
     private final SeasonRepository seasonRepository;
 
@@ -30,7 +30,8 @@ public class TrendingTvItemWriter implements ItemWriter<Tv> {
         productionCompanyRepository.saveAll(tv.getProductionCompanies());
         productionCountryRepository.saveAll(tv.getProductionCountries());
         spokenLanguageRepository.saveAll(tv.getSpokenLanguages());
-        lastEpisodeToAirRepository.save(tv.getEpisodeToAir());
+        episodeToAirRepository.save(tv.getNextEpisodeToAir());
+        episodeToAirRepository.save(tv.getLastEpisodeToAir());
         networkRepository.saveAll(tv.getNetworks());
         seasonRepository.saveAll(tv.getSeasons());
     }

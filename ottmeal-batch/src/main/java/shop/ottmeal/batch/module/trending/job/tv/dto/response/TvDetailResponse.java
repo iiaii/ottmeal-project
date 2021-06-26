@@ -108,7 +108,7 @@ public class TvDetailResponse {
                 .episodeRunTime(tvDetailResponse.getEpisode_run_time())
                 .genres(tvDetailResponse.getGenres().stream().map(GenreResponse::toEntity).collect(Collectors.toList()))
                 .languages(tvDetailResponse.getLanguages())
-                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air())
+                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air().toEntity())
                 .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air().toEntity())
                 .networks(tvDetailResponse.getNetworks().stream().map(NetworkResponse::toEntity).collect(Collectors.toList()))
                 .originCountry(tvDetailResponse.getOrigin_country())
@@ -120,7 +120,8 @@ public class TvDetailResponse {
 
         tv.getCreatedBy().stream().forEach(createdBy -> createdBy.setTv(tv));
         tv.getGenres().stream().forEach(genre -> genre.setTv(tv));
-        tv.getEpisodeToAir().setTv(tv);
+        tv.getNextEpisodeToAir().setTv(tv);
+        tv.getLastEpisodeToAir().setTv(tv);
         tv.getNetworks().stream().forEach(network -> network.setTv(tv));
         tv.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setTv(tv));
         tv.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setTv(tv));
