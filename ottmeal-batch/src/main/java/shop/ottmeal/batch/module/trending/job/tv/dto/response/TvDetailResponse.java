@@ -121,8 +121,12 @@ public class TvDetailResponse {
 
         tv.getCreatedBy().stream().forEach(createdBy -> createdBy.setTv(tv));
         tv.getGenres().stream().forEach(genre -> genre.setTv(tv));
-        tv.getNextEpisodeToAir().setTv(tv);
-        tv.getLastEpisodeToAir().setTv(tv);
+        if (Objects.nonNull(tv.getNextEpisodeToAir())) {
+            tv.getNextEpisodeToAir().setTv(tv);
+        }
+        if (Objects.nonNull(tv.getLastEpisodeToAir())) {
+            tv.getLastEpisodeToAir().setTv(tv);
+        }
         tv.getNetworks().stream().forEach(network -> network.setTv(tv));
         tv.getProductionCompanies().stream().forEach(productionCompany -> productionCompany.setTv(tv));
         tv.getProductionCountries().stream().forEach(productionCountry -> productionCountry.setTv(tv));
