@@ -4,22 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseCreatedBy;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class CreatedBy {
-
-    @Id
-    @GeneratedValue
-    private Long idx;
-    private Long id;
-    private String creditId;
-    private String name;
-    private Integer gender;
-    private String profilePath;
+public class CreatedBy extends BaseCreatedBy {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,13 +19,8 @@ public class CreatedBy {
     private Tv tv;
 
     @Builder
-    public CreatedBy(Long id, String creditId, String name, int gender, String profilePath) {
-        this.id = id;
-        this.creditId = creditId;
-        this.name = name;
-        this.gender = gender;
-        this.profilePath = profilePath;
+    public CreatedBy(Long id, String creditId, String name, Integer gender, String profilePath, Tv tv) {
+        super(id, creditId, name, gender, profilePath);
+        this.tv = tv;
     }
-
-
 }

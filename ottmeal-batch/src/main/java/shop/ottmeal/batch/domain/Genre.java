@@ -4,21 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseGenre;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Genre {
-
-    @Id
-    @GeneratedValue
-    private Long idx;
-
-    private Long id;
-
-    private String name;
+public class Genre extends BaseGenre {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,9 +24,9 @@ public class Genre {
     private Tv tv;
 
     @Builder
-    public Genre(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    public Genre(Long id, String name, Movie movie, Tv tv) {
+        super(id, name);
+        this.movie = movie;
+        this.tv = tv;
     }
-
 }

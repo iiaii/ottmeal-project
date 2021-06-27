@@ -63,20 +63,22 @@ public class Tv extends BaseTv {
     )
     private List<String> originCountry;
 
+
+
     @Builder
-    public Tv(Long idx, String backdropPath, LocalDateTime firstAirDate, String homepage, Long id, Boolean inProduction, LocalDateTime lastAirDate, String name, Integer numberOfEpisodes, Integer numberOfSeasons, String originalLanguage, String originalName, String overview, Double popularity, String posterPath, String status, String tagline, String type, Double voteAverage, Long voteCount, List<CreatedBy> createdBy, List<Integer> episodeRunTime, List<Genre> genres, List<String> languages, EpisodeToAir nextEpisodeToAir, EpisodeToAir lastEpisodeToAir, List<Network> networks, List<String> originCountry, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<Season> seasons, List<SpokenLanguage> spokenLanguages) {
-        super(idx, backdropPath, firstAirDate, homepage, id, inProduction, lastAirDate, name, numberOfEpisodes, numberOfSeasons, originalLanguage, originalName, overview, popularity, posterPath, status, tagline, type, voteAverage, voteCount);
+    public Tv(String backdropPath, LocalDateTime firstAirDate, String homepage, Long id, Boolean inProduction, LocalDateTime lastAirDate, String name, Integer numberOfEpisodes, Integer numberOfSeasons, String originalLanguage, String originalName, String overview, Double popularity, String posterPath, String status, String tagline, String type, Double voteAverage, Long voteCount, List<CreatedBy> createdBy, List<Genre> genres, EpisodeToAir nextEpisodeToAir, EpisodeToAir lastEpisodeToAir, List<Network> networks, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<Season> seasons, List<SpokenLanguage> spokenLanguages, List<String> languages, List<Integer> episodeRunTime, List<String> originCountry) {
+        super(backdropPath, firstAirDate, homepage, id, inProduction, lastAirDate, name, numberOfEpisodes, numberOfSeasons, originalLanguage, originalName, overview, popularity, posterPath, status, tagline, type, voteAverage, voteCount);
         this.createdBy = createdBy;
-        this.episodeRunTime = episodeRunTime;
         this.genres = genres;
-        this.languages = languages;
         this.nextEpisodeToAir = nextEpisodeToAir;
         this.lastEpisodeToAir = lastEpisodeToAir;
         this.networks = networks;
-        this.originCountry = originCountry;
         this.productionCompanies = productionCompanies;
         this.productionCountries = productionCountries;
         this.seasons = seasons;
         this.spokenLanguages = spokenLanguages;
+        this.languages = languages;
+        this.episodeRunTime = episodeRunTime;
+        this.originCountry = originCountry;
     }
 }

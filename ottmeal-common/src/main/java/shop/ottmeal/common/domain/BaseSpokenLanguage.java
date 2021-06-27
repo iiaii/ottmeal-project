@@ -5,17 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public class BaseReview extends BaseEntity {
+public class BaseSpokenLanguage extends BaseEntity {
 
-    @Column(name = "title")
-    protected String title;
+    protected String englishName;
 
-    @Column(name = "comment")
-    protected String comment;
+    protected String iso_639_1;
+
+    protected String name;
 }

@@ -11,11 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public class BaseRating {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idx")
-    protected Long idx;
+public class BaseRating extends BaseEntity {
 
     @Column(name = "value")
     protected Integer value;

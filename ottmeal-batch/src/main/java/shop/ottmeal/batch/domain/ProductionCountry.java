@@ -4,21 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseProductionCountry;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class ProductionCountry {
-
-    @Id
-    @GeneratedValue
-    private Long idx;
-
-    private String iso_3166_1;
-
-    private String name;
+public class ProductionCountry extends BaseProductionCountry {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,8 +24,9 @@ public class ProductionCountry {
     private Tv tv;
 
     @Builder
-    public ProductionCountry(String iso_3166_1, String name) {
-        this.iso_3166_1 = iso_3166_1;
-        this.name = name;
+    public ProductionCountry(String iso_3166_1, String name, Movie movie, Tv tv) {
+        super(iso_3166_1, name);
+        this.movie = movie;
+        this.tv = tv;
     }
 }

@@ -4,23 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseSpokenLanguage;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class SpokenLanguage {
-
-    @Id
-    @GeneratedValue
-    private Long idx;
-
-    private String englishName;
-
-    private String iso_639_1;
-
-    private String name;
+public class SpokenLanguage extends BaseSpokenLanguage {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,9 +24,9 @@ public class SpokenLanguage {
     private Tv tv;
 
     @Builder
-    public SpokenLanguage(String englishName, String iso_639_1, String name) {
-        this.englishName = englishName;
-        this.iso_639_1 = iso_639_1;
-        this.name = name;
+    public SpokenLanguage(String englishName, String iso_639_1, String name, Movie movie, Tv tv) {
+        super(englishName, iso_639_1, name);
+        this.movie = movie;
+        this.tv = tv;
     }
 }

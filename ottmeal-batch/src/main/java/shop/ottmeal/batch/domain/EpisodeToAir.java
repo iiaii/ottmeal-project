@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseEpisodeToAir;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,21 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class EpisodeToAir {
-
-    @Id @GeneratedValue
-    private Long idx;
-    private LocalDateTime airDate;
-    private int episodeNumber;
-    private Long id;
-    private String name;
-    @Lob
-    private String overview;
-    private String productionCode;
-    private int seasonNumber;
-    private String stillPath;
-    private Double voteAverage;
-    private int voteCount;
+public class EpisodeToAir extends BaseEpisodeToAir {
 
     @Setter
     @OneToOne(fetch = FetchType.LAZY)
@@ -33,16 +20,8 @@ public class EpisodeToAir {
     private Tv tv;
 
     @Builder
-    public EpisodeToAir(LocalDateTime airDate, int episodeNumber, Long id, String name, String overview, String productionCode, int seasonNumber, String stillPath, Double voteAverage, int voteCount) {
-        this.airDate = airDate;
-        this.episodeNumber = episodeNumber;
-        this.id = id;
-        this.name = name;
-        this.overview = overview;
-        this.productionCode = productionCode;
-        this.seasonNumber = seasonNumber;
-        this.stillPath = stillPath;
-        this.voteAverage = voteAverage;
-        this.voteCount = voteCount;
+    public EpisodeToAir(LocalDateTime airDate, Integer episodeNumber, Long id, String name, String overview, String productionCode, Integer seasonNumber, String stillPath, Double voteAverage, Integer voteCount, Tv tv) {
+        super(airDate, episodeNumber, id, name, overview, productionCode, seasonNumber, stillPath, voteAverage, voteCount);
+        this.tv = tv;
     }
 }

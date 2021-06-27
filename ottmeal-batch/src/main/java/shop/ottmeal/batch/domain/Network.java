@@ -4,19 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.ottmeal.common.domain.BaseNetwork;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Network {
-
-    @Id @GeneratedValue
-    private Long idx;
-    private String name;
-    private String logoPath;
-    private String originCountry;
+public class Network extends BaseNetwork {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,9 +19,8 @@ public class Network {
     private Tv tv;
 
     @Builder
-    public Network(String name, String logoPath, String originCountry) {
-        this.name = name;
-        this.logoPath = logoPath;
-        this.originCountry = originCountry;
+    public Network(String name, String logoPath, String originCountry, Tv tv) {
+        super(name, logoPath, originCountry);
+        this.tv = tv;
     }
 }

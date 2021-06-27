@@ -1,31 +1,29 @@
 package shop.ottmeal.common.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public class BaseSeason {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idx")
-    protected Long idx;
+public class BaseSeason extends BaseEntity {
 
-    @Column(name = "title")
-    protected String title;
+    protected LocalDateTime airDate;
 
-    @Column(name = "order")
-    protected String order;
+    protected Integer episodeCount;
 
-    @Column(name = "director")
-    protected String director;
+    protected Long id;
 
-    @Column(name = "adult")
-    protected boolean adult;
+    protected String name;
+
+    @Lob
+    protected String overview;
+
+    protected String posterPath;
+
+    protected Integer seasonNumber;
+
 }

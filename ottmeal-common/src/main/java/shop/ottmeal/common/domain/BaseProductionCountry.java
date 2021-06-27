@@ -1,9 +1,6 @@
 package shop.ottmeal.common.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,8 +8,9 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public class BasePlatform extends BaseEntity {
+public class BaseProductionCountry extends BaseEntity {
 
-    @Column(name = "name")
+    protected String iso_3166_1;
+
     protected String name;
 }

@@ -10,6 +10,7 @@ import shop.ottmeal.batch.domain.*;
 import shop.ottmeal.batch.module.trending.job.common.dto.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -108,8 +109,8 @@ public class TvDetailResponse {
                 .episodeRunTime(tvDetailResponse.getEpisode_run_time())
                 .genres(tvDetailResponse.getGenres().stream().map(GenreResponse::toEntity).collect(Collectors.toList()))
                 .languages(tvDetailResponse.getLanguages())
-                .nextEpisodeToAir(tvDetailResponse.getNext_episode_to_air().toEntity())
-                .lastEpisodeToAir(tvDetailResponse.getLast_episode_to_air().toEntity())
+                .nextEpisodeToAir(Objects.isNull(tvDetailResponse.getNext_episode_to_air()) ? null : tvDetailResponse.getNext_episode_to_air().toEntity())
+                .lastEpisodeToAir(Objects.isNull(tvDetailResponse.getLast_episode_to_air()) ? null : tvDetailResponse.getLast_episode_to_air().toEntity())
                 .networks(tvDetailResponse.getNetworks().stream().map(NetworkResponse::toEntity).collect(Collectors.toList()))
                 .originCountry(tvDetailResponse.getOrigin_country())
                 .productionCompanies(tvDetailResponse.getProduction_companies().stream().map(ProductionCompanyResponse::toEntity).collect(Collectors.toList()))
