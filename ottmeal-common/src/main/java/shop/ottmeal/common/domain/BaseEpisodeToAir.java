@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class BaseEpisodeToAir extends BaseEntity {
 
     protected Integer episodeNumber;
 
+//    @Column(name = "episode_to_air_id", unique = true)
     protected Long id;
 
     protected String name;

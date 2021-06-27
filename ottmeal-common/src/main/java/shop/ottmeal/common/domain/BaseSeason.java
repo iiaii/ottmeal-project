@@ -15,6 +15,7 @@ public class BaseSeason extends BaseEntity {
 
     protected Integer episodeCount;
 
+//    @Column(name = "season_id", unique = true)
     protected Long id;
 
     protected String name;

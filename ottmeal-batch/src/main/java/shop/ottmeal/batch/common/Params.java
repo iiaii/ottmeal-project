@@ -41,6 +41,15 @@ public class Params {
         }
     }
 
+    public void resetValueIfNumber(Param param) {
+        try {
+            int value = Integer.parseInt(params.get(param));
+            params.put(param, Integer.toString(0));
+        } catch(NumberFormatException e) {
+            return;
+        }
+    }
+
     public void set(Param param, String value) {
         params.put(param, value);
     }

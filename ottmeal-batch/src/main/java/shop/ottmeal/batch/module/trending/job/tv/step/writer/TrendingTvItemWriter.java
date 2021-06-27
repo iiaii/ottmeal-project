@@ -6,6 +6,7 @@ import shop.ottmeal.batch.domain.*;
 import shop.ottmeal.batch.repository.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class TrendingTvItemWriter implements ItemWriter<Tv> {
@@ -30,8 +31,12 @@ public class TrendingTvItemWriter implements ItemWriter<Tv> {
         productionCompanyRepository.saveAll(tv.getProductionCompanies());
         productionCountryRepository.saveAll(tv.getProductionCountries());
         spokenLanguageRepository.saveAll(tv.getSpokenLanguages());
-        episodeToAirRepository.save(tv.getNextEpisodeToAir());
-        episodeToAirRepository.save(tv.getLastEpisodeToAir());
+        if (Objects.nonNull(tv.getNextEpisodeToAir())) {
+            episodeToAirRepository.save(tv.getNextEpisodeToAir());
+        }
+        if (Objects.nonNull(tv.getLastEpisodeToAir())) {
+            episodeToAirRepository.save(tv.getLastEpisodeToAir());
+        }
         networkRepository.saveAll(tv.getNetworks());
         seasonRepository.saveAll(tv.getSeasons());
     }

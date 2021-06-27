@@ -29,17 +29,14 @@ public class TrendingItemReader implements ItemReader<TrendingResult> {
 
     @Override
     public TrendingResult read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        response = response.getResults().isEmpty()
-                ? request()
-                : response;
-
         if (response.getResults().size() <= index) {
             int page = Integer.parseInt(request.getParams().getParam(Param.PAGE));
-            index = 0;
             if (totalPages > page) {
+                index = 0;
                 request.getParams().addValueIfNumber(Param.PAGE);
                 response = request();
             } else {
+                request.getParams().resetValueIfNumber(Param.PAGE);
                 return null;
             }
         }

@@ -13,6 +13,6 @@ import javax.persistence.*;
 @MappedSuperclass
 public class BasePlatform extends BaseEntity {
 
-    @Column(name = "name")
+//    @Column(unique = true)
     protected String name;
 }

@@ -22,6 +22,7 @@ public class BaseMovie extends BaseEntity {
 
     protected String homepage;
 
+//    @Column(name = "movie_id", unique = true)
     protected Long id;
 
     protected String imdbId;

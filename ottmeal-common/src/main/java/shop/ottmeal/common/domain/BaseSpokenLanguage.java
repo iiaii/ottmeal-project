@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @Getter
@@ -15,6 +16,7 @@ public class BaseSpokenLanguage extends BaseEntity {
 
     protected String englishName;
 
+//    @Column(unique = true)
     protected String iso_639_1;
 
     protected String name;

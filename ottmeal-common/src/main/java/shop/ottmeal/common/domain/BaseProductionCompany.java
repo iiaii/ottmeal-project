@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @Getter
@@ -13,6 +14,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseProductionCompany extends BaseEntity {
 
+//    @Column(name = "production_company_id", unique = true)
     protected Long id;
 
     protected String logoPath;

@@ -20,6 +20,7 @@ public class BaseTv extends BaseEntity {
 
     protected String homepage;
 
+//    @Column(name = "tv_id", unique = true)
     protected Long id;
 
     protected Boolean inProduction;

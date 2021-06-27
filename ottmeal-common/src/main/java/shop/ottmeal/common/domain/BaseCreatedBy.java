@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class BaseCreatedBy extends BaseEntity {
 
+//    @Column(name = "created_by_id", unique = true)
     protected Long id;
 
     protected String creditId;
